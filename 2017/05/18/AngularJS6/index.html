@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            AngularJS之英雄联盟HTTP | 
+        
+        小鱼的博客
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="small fish">
+    <meta name="description" content="null">
+    <meta name="keywords" content="小鱼,小鱼空间,小鱼博客站，小鱼博客，技术博客，前端技术，前端,AngularJS">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="小鱼的博客">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://prettysheep.info">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="AngularJS之英雄联盟HTTP | 小鱼的博客">
+    <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="AngularJS"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#提供-HTTP-服务"><span class="post-toc-number">1.</span> <span class="post-toc-text">提供 HTTP 服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注册-HTTP-服务"><span class="post-toc-number">2.</span> <span class="post-toc-text">注册 HTTP 服务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模拟web-API"><span class="post-toc-number">3.</span> <span class="post-toc-text">模拟web API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#英雄与-HTTP"><span class="post-toc-number">4.</span> <span class="post-toc-text">英雄与 HTTP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP-Promise"><span class="post-toc-number">5.</span> <span class="post-toc-text">HTTP Promise</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在-then-回调中提取出数据"><span class="post-toc-number">6.</span> <span class="post-toc-text">在 then 回调中提取出数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#错误处理"><span class="post-toc-number">7.</span> <span class="post-toc-text">错误处理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通过id获取英雄"><span class="post-toc-number">8.</span> <span class="post-toc-text">通过id获取英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#更新英雄详情"><span class="post-toc-number">9.</span> <span class="post-toc-text">更新英雄详情</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#hero-服务的update方法"><span class="post-toc-number">10.</span> <span class="post-toc-text">hero 服务的update方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加英雄"><span class="post-toc-number">11.</span> <span class="post-toc-text">添加英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#支持添加英雄"><span class="post-toc-number">12.</span> <span class="post-toc-text">支持添加英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HeroSearchComponent"><span class="post-toc-number">13.</span> <span class="post-toc-text">HeroSearchComponent</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#导入-RxJS-操作符"><span class="post-toc-number">14.</span> <span class="post-toc-text">导入 RxJS 操作符</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                AngularJS之英雄联盟HTTP
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>small fish</strong>
+        <span>5月 18, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACb0lEQVR42u3aQXbDIAwFwNz/0u0B2jpfEmA3b1j1NcRmWIAi6fX10eOFh4eHh4eHh4f3MN4rHr886Menf83vvaX5LTw8PLwjvDdHbfDi6wVdv6v6/zdrw8PDwzvIS5aVXxLJ85P5+drw8PDwns/L5/euBzw8PLxP4lWP+Go4joeHh/dfeMkP/knqtlzKOp9rwcPDw4t5eZHp/N9H63t4eHh4Aa93WK8qm+VtCs2mKzw8PLwNvF6iIQ++kxJanrZI1oOHh4d3hldtk7q+KqoJ3CTlUWg+wMPDwzvCS4LgHJwE33mrQbJOPDw8vJO86vGdzKwG00mQnQfWeHh4eLt5vQJY1Pw0SEbkG4GHh4d3F6/34l6Zv5cUzkN2PDw8vDO8JCxOML0SV3XmKKTGw8PDG/PycY2sLre66MIz8fDw8I7w8qO/mpiIiv3Fa+nN1YKHh4e3mTd60KBUljddlTcLDw8P7whvnn6dfGvSjrCsvoeHh4fXSkb0Du68NJUf7pPtw8PDw9vNS47mJIHbC4t7xbZmZwQeHh7eUl6SWu0VtHYE3OU0Lh4eHt4GXnWhefog2b7J86NcCx4eHt42Xi9dm2xKL7mQbxYeHh7eXbxJ4X9SDOs1e41Cajw8PLwBrzqqIXJ+YVS3AA8PD+8u3tp2q+qVk6cbtveU4eHh4W34tV5N2lbLV72wGw8PD+9e3jydmpSyJsmIZQUwPDw8vOO85LivXh7V9tZCuyoeHh7eY3iFwzpO/uawUWcEHh4e3iJekozolbXy0HlB4wIeHh7eEd4kBdALf3uhdrTpeHh4eJt5nzfw8PDw8PDw8PAeML4BbQ3OSkuWwBwAAAAASUVORK5CYII=">
+        </ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/AngularJS/">AngularJS</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=AngularJS之英雄联盟HTTP&url=http://prettysheep.info//2017/05/18/AngularJS6/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=AngularJS之英雄联盟HTTP&url=http://prettysheep.info//2017/05/18/AngularJS6/index.html&via=small fish" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://prettysheep.info//2017/05/18/AngularJS6/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://prettysheep.info//2017/05/18/AngularJS6/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>在<a href="http://localhost:4000/2017/05/18/AngularJS5" target="_blank" rel="external">前一章</a>中，我们学会了在仪表盘和固定的英雄列表之间导航，并编辑选定的英雄。这也就是本章的起点。</p>
+<h3 id="提供-HTTP-服务"><a href="#提供-HTTP-服务" class="headerlink" title="提供 HTTP 服务"></a>提供 HTTP 服务</h3><p>HttpModule并不是 Angular 的核心模块。 它是 Angular 用来进行 Web 访问的一种可选方式，并位于一个名叫 @angular/http 的独立附属模块中，并作为 Angular 的 npm 包之一而发布出来。</p>
+<p>systemjs.config中已经配置好了 SystemJS，并在必要时加载它，因此我们已经准备好从@angular/http中导入它了。</p>
+<h3 id="注册-HTTP-服务"><a href="#注册-HTTP-服务" class="headerlink" title="注册 HTTP 服务"></a>注册 HTTP 服务</h3><p>我们的应用将会依赖于 Angular 的http服务，它本身又依赖于其它支持类服务。 来自@angular/http库中的HttpModule保存着这些 HTTP 相关服务提供商的全集。</p>
+<p>我们要能从本应用的任何地方访问这些服务，就要把HttpModule添加到AppModule的imports列表中。 这里同时也是我们引导应用及其根组件AppComponent的地方。</p>
+<blockquote>
+<p>注意，现在HttpModule已经是根模块AppModule的imports数组的一部分了。</p>
+</blockquote>
+<h3 id="模拟web-API"><a href="#模拟web-API" class="headerlink" title="模拟web API"></a>模拟web API</h3><p>我们建议在根模块AppModule的providers数组中注册全应用级的服务。</p>
+<p>在拥有一个能处理Web请求的服务器之前，我们可以先用HTTP客户端通过一个模拟（Mock）服务（内存Web API）来获取和保存数据。</p>
+<p>修改src/app/app.module.ts，让它使用这个模拟服务：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NgModule &#125;      <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</div><div class="line"><span class="keyword">import</span> &#123; FormsModule &#125;   <span class="keyword">from</span> <span class="string">'@angular/forms'</span>;</div><div class="line"><span class="keyword">import</span> &#123; HttpModule &#125;    <span class="keyword">from</span> <span class="string">'@angular/http'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</div><div class="line"><span class="comment">// Imports for loading &amp; configuring the in-memory web api</span></div><div class="line"><span class="keyword">import</span> &#123; InMemoryWebApiModule &#125; <span class="keyword">from</span> <span class="string">'angular-in-memory-web-api'</span>;</div><div class="line"><span class="keyword">import</span> &#123; InMemoryDataService &#125;  <span class="keyword">from</span> <span class="string">'./in-memory-data.service'</span>;</div><div class="line"><span class="keyword">import</span> &#123; AppComponent &#125;         <span class="keyword">from</span> <span class="string">'./app.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; DashboardComponent &#125;   <span class="keyword">from</span> <span class="string">'./dashboard.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; HeroesComponent &#125;      <span class="keyword">from</span> <span class="string">'./heroes.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; HeroDetailComponent &#125;  <span class="keyword">from</span> <span class="string">'./hero-detail.component'</span>;</div><div class="line"><span class="keyword">import</span> &#123; HeroService &#125;          <span class="keyword">from</span> <span class="string">'./hero.service'</span>;</div><div class="line">@NgModule(&#123;</div><div class="line">  <span class="attr">imports</span>: [</div><div class="line">    BrowserModule,</div><div class="line">    FormsModule,</div><div class="line">    HttpModule,</div><div class="line">    InMemoryWebApiModule.forRoot(InMemoryDataService),</div><div class="line">    AppRoutingModule</div><div class="line">  ],</div><div class="line">  <span class="attr">declarations</span>: [</div><div class="line">    AppComponent,</div><div class="line">    DashboardComponent,</div><div class="line">    HeroDetailComponent,</div><div class="line">    HeroesComponent,</div><div class="line">  ],</div><div class="line">  <span class="attr">providers</span>: [ HeroService ],</div><div class="line">  <span class="attr">bootstrap</span>: [ AppComponent ]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123; &#125;</div></pre></td></tr></table></figure>
+<p>导入InMemoryWebApiModule并将其加入到模块的imports数组。 InMemoryWebApiModule将Http客户端默认的后端服务 — 这是一个辅助服务，负责与远程服务器对话 — 替换成了内存 Web API服务：</p>
+<pre><code>InMemoryWebApiModule.forRoot(InMemoryDataService),
+</code></pre><p>forRoot()配置方法需要InMemoryDataService类实例，用来向内存数据库填充数据： 往app目录下新增一个文件in-memory-data.service.ts，填写下列内容：</p>
+<pre><code>import { InMemoryDbService } from &apos;angular-in-memory-web-api&apos;;
+export class InMemoryDataService implements InMemoryDbService {
+  createDb() {
+    let heroes = [
+      {id: 11, name: &apos;Mr. Nice&apos;},
+      {id: 12, name: &apos;Narco&apos;},
+      {id: 13, name: &apos;Bombasto&apos;},
+      {id: 14, name: &apos;Celeritas&apos;},
+      {id: 15, name: &apos;Magneta&apos;},
+      {id: 16, name: &apos;RubberMan&apos;},
+      {id: 17, name: &apos;Dynama&apos;},
+      {id: 18, name: &apos;Dr IQ&apos;},
+      {id: 19, name: &apos;Magma&apos;},
+      {id: 20, name: &apos;Tornado&apos;}
+    ];
+    return {heroes};
+  }
+}
+</code></pre><p>这个文件已经替换了mock-heroes.ts，可以删除mock-heroes.ts了。</p>
+<h3 id="英雄与-HTTP"><a href="#英雄与-HTTP" class="headerlink" title="英雄与 HTTP"></a>英雄与 HTTP</h3><p>在目前的HeroService的实现中，返回的是一个能解析（resolve）成模拟英雄列表的承诺（Promise）。</p>
+<pre><code>getHeroes(): Promise&lt;Hero[]&gt; {
+  return Promise.resolve(HEROES);
+}
+</code></pre><p>我们返回一个承诺 (Promise)，它用模拟版的英雄列表进行解析。 它当时可能看起来显得有点过于复杂，不过我们预料到总有这么一天会通过 HTTP 客户端来获取英雄数据， 而且我们知道，那一定是一个异步操作。</p>
+<p>现在，我们把getHeroes()换成使用 HTTP。</p>
+<pre><code>private heroesUrl = &apos;api/heroes&apos;;  // URL to web api
+constructor(private http: Http) { }
+getHeroes(): Promise&lt;Hero[]&gt; {
+  return this.http.get(this.heroesUrl)
+             .toPromise()
+             .then(response =&gt; response.json().data as Hero[])
+             .catch(this.handleError);
+}
+private handleError(error: any): Promise&lt;any&gt; {
+  console.error(&apos;An error occurred&apos;, error); // for demo purposes only
+  return Promise.reject(error.message || error);
+}
+</code></pre><p>更新后的导入声明如下：</p>
+<pre><code>import { Injectable }    from &apos;@angular/core&apos;;
+import { Headers, Http } from &apos;@angular/http&apos;;
+import &apos;rxjs/add/operator/toPromise&apos;;
+import { Hero } from &apos;./hero&apos;;
+</code></pre><p>刷新浏览器后，英雄数据就会从模拟服务器被成功读取。</p>
+<h3 id="HTTP-Promise"><a href="#HTTP-Promise" class="headerlink" title="HTTP Promise"></a>HTTP Promise</h3><p>Angular 的http.get返回一个 RxJS 的Observable对象。 Observable（可观察对象）是一个管理异步数据流的强力方式。 后面我们还会进一步学习可观察对象。</p>
+<p>现在，我们先利用toPromise操作符把Observable直接转换成Promise对象，回到已经熟悉的地盘。</p>
+<pre><code>.toPromise()
+</code></pre><p>不幸的是，Angular 的Observable并没有一个toPromise操作符… 没有打包在一起发布。Angular的Observable只是一个骨架实现。</p>
+<p>有很多像toPromise这样的操作符，用于扩展Observable，为其添加有用的能力。 如果我们希望得到那些能力，就得自己添加那些操作符。 那很容易，只要从 RxJS 库中导入它们就可以了，就像这样：    </p>
+<pre><code>import &apos;rxjs/add/operator/toPromise&apos;;
+</code></pre><blockquote>
+<p>我们还要添加更多的操作符，并且必须这么做，要了解其中的原因，参见本章稍后的部分。</p>
+</blockquote>
+<h3 id="在-then-回调中提取出数据"><a href="#在-then-回调中提取出数据" class="headerlink" title="在 then 回调中提取出数据"></a>在 then 回调中提取出数据</h3><p>在 promise 的then()回调中，我们调用 HTTP 的Reponse对象的json方法，以提取出其中的数据。</p>
+<pre><code>.then(response =&gt; response.json().data as Hero[])
+</code></pre><p>这个由json方法返回的对象只有一个data属性。 这个data属性保存了英雄数组，这个数组才是调用者真正想要的。 所以我们取得这个数组，并且把它作为承诺的值进行解析。</p>
+<blockquote>
+<p>仔细看看这个由服务器返回的数据的形态。 这个内存 Web API 的范例中所做的是返回一个带有data属性的对象。 你的 API 也可以返回其它东西。请调整这些代码以匹配你的 Web API。</p>
+</blockquote>
+<p>调用者并不知道这些实现机制，它仍然像以前那样接收一个包含英雄数据的承诺。 它也不知道我们已经改成了从服务器获取英雄数据。 它也不必了解把 HTTP 响应转换成英雄数据时所作的这些复杂变换。 看到美妙之处了吧，这正是将数据访问委托组一个服务的目的。</p>
+<h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>在getHeroes()的最后，我们catch了服务器的失败信息，并把它们传给了错误处理器：</p>
+<pre><code>.catch(this.handleError);
+</code></pre><p>这是一个关键的步骤！ 我们必须预料到 HTTP 请求会失败，因为有太多我们无法控制的原因可能导致它们频繁出现各种错误。</p>
+<pre><code>private handleError(error: any): Promise&lt;any&gt; {
+  console.error(&apos;An error occurred&apos;, error); // for demo purposes only
+  return Promise.reject(error.message || error);
+}
+</code></pre><p>在这个范例服务中，我们把错误记录到控制台中；在真实世界中，我们应该用代码对错误进行处理。但对于演示来说，这就够了。</p>
+<p>我们还要通过一个被拒绝 (rejected) 的承诺来把该错误用一个用户友好的格式返回给调用者， 以便调用者能把一个合适的错误信息显示给用户。</p>
+<h3 id="通过id获取英雄"><a href="#通过id获取英雄" class="headerlink" title="通过id获取英雄"></a>通过id获取英雄</h3><p>当HeroDetailComponent向HeroService请求获取一个英雄时，HeroService会获取所有英雄，并从中过滤出与id匹配的那一个。 这对于例子来说倒是无可厚非， 不过在真实服务中，这种为了获取一个英雄而请求全部英雄的做法就有点浪费了， 许多Web API支持get-by-id请求，形如：api/hero/:id（如：api/hero/11）。</p>
+<p>修改 HeroService.getHero() 方法来发起一个 get-by-id 请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">getHero(id: number): Promise&lt;Hero&gt; &#123;</div><div class="line">  const url = `$&#123;this.heroesUrl&#125;/$&#123;id&#125;`;</div><div class="line">  return this.http.get(url)</div><div class="line">    .toPromise()</div><div class="line">    .then(response =&gt; response.json().data as Hero)</div><div class="line">    .catch(this.handleError);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此方法基本上与getHeroes方法一致，通过在URL中添加英雄的id来告诉服务器应该获取那个英雄， 匹配api/hero/:id模式。</p>
+<p>我们还要把响应中返回的data改为一个英雄对象，而不再是对象数组。组。</p>
+<p>getHeroes API 没变</p>
+<p>尽管我们在getHeroes()和getHero()方法的内部做了重大修改， 但是他们的公共签名却没有变。这两个方法仍然返回的是一个Promise对象， 所以并不需要修改任何调用他们的组件。</p>
+<p>现在，我们该支持创建和删除英雄了。</p>
+<h3 id="更新英雄详情"><a href="#更新英雄详情" class="headerlink" title="更新英雄详情"></a>更新英雄详情</h3><p>我们已经可以在英雄详情中编辑英雄的名字了。来试试吧。在输入的时候，页头上的英雄名字也会随之更新。 不过当我们点了Back（后退）按钮时，这些修改就丢失了。</p>
+<p>以前是不会丢失更新的，怎么回事？ 当该应用使用模拟出来的英雄列表时，修改的是一份全局共享的英雄列表，而现在改成了从服务器获取数据。 如果我们希望这些更改被持久化，我们就得把它们写回服务器。</p>
+<p>保存英雄详情<br>我们先来确保对英雄名字的编辑不会丢失。先在英雄详情模板的底部添加一个保存按钮，它绑定了一个click事件，事件绑定会调用组件中一个名叫save()的新方法：<br>src/app/hero-detail.component.html (save)</p>
+<pre><code>&lt;button (click)=&quot;save()&quot;&gt;Save&lt;/button&gt;
+</code></pre><p>save()方法使用 hero 服务的update()方法来持久化对英雄名字的修改，然后导航回前一个视图：<br>src/app/hero-detail.component.html (save)</p>
+<pre><code>save(): void {
+  this.heroService.update(this.hero)
+    .then(() =&gt; this.goBack());
+}
+</code></pre><h3 id="hero-服务的update方法"><a href="#hero-服务的update方法" class="headerlink" title="hero 服务的update方法"></a>hero 服务的update方法</h3><p>update()方法的大致结构与getHeroes()类似，不过我们使用 HTTP 的 put() 方法来把修改持久化到服务端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">private headers = new Headers(&#123;&apos;Content-Type&apos;: &apos;application/json&apos;&#125;);</div><div class="line">update(hero: Hero): Promise&lt;Hero&gt; &#123;</div><div class="line">  const url = `$&#123;this.heroesUrl&#125;/$&#123;hero.id&#125;`;</div><div class="line">  return this.http</div><div class="line">    .put(url, JSON.stringify(hero), &#123;headers: this.headers&#125;)</div><div class="line">    .toPromise()</div><div class="line">    .then(() =&gt; hero)</div><div class="line">    .catch(this.handleError);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们通过一个编码在 URL 中的英雄 id 来告诉服务器应该更新哪个英雄。put 的 body 是该英雄的 JSON 字符串，它是通过调用JSON.stringify得到的。 并且在请求头中标记出的 body 的内容类型（application/json）。</p>
+<p>刷新浏览器试一下，对英雄名字的修改确实已经被持久化了。</p>
+<h3 id="添加英雄"><a href="#添加英雄" class="headerlink" title="添加英雄"></a>添加英雄</h3><p>要添加一个新的英雄，我们得先知道英雄的名字。我们使用一个 input 元素和一个添加按钮来实现。</p>
+<p>把下列代码插入 heroes 组件的 HTML 中，放在标题的下面：</p>
+<pre><code>&lt;div&gt;
+  &lt;label&gt;Hero name:&lt;/label&gt; &lt;input #heroName /&gt;
+  &lt;button (click)=&quot;add(heroName.value); heroName.value=&apos;&apos;&quot;&gt;
+    Add
+  &lt;/button&gt;
+&lt;/div&gt;
+</code></pre><p>当点击事件触发时，我们调用组件的点击处理器，然后清空这个输入框，以便用来输入另一个名字。<br>src/app/heroes.component.ts (add)</p>
+<pre><code>add(name: string): void {
+  name = name.trim();
+  if (!name) { return; }
+  this.heroService.create(name)
+  .then(hero =&gt; {
+    this.heroes.push(hero);
+    this.selectedHero = null;
+  });
+}
+</code></pre><p>当指定的名字不为空的时候，点击处理器就会委托 hero 服务来创建一个具有此名字的英雄， 并把这个新的英雄添加到我们的数组中。</p>
+<p>然后，我们在HeroService类中实现这个create()方法。<br>src/app/hero.service.ts (create)</p>
+<pre><code>create(name: string): Promise&lt;Hero&gt; {
+  return this.http
+    .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
+    .toPromise()
+    .then(res =&gt; res.json().data as Hero)
+    .catch(this.handleError);
+}
+</code></pre><p>刷新浏览器，并创建一些新的英雄！</p>
+<h3 id="支持添加英雄"><a href="#支持添加英雄" class="headerlink" title="支持添加英雄"></a>支持添加英雄</h3><p>在英雄列表视图中的每个英雄都应该有一个删除按钮。</p>
+<p>把这个按钮元素添加到英雄列表组件的 HTML 中，把它放在<li>标签中的英雄名的后面：</li></p>
+<pre><code>&lt;button class=&quot;delete&quot;
+  (click)=&quot;delete(hero); $event.stopPropagation()&quot;&gt;x&lt;/button&gt;
+</code></pre><p>li元素应该变成了这样：</p>
+<pre><code>&lt;li * ngFor=&quot;let hero of heroes&quot; (click)=&quot;onSelect(hero)&quot;
+    [class.selected]=&quot;hero === selectedHero&quot;&gt;
+  &lt;span class=&quot;badge&quot;&gt;{{hero.id}}&lt;/span&gt;
+  &lt;span&gt;{{hero.name}}&lt;/span&gt;
+  &lt;button class=&quot;delete&quot;
+    (click)=&quot;delete(hero); $event.stopPropagation()&quot;&gt;x&lt;/button&gt;
+&lt;/li&gt;
+</code></pre><p>除了调用组件的delete()方法之外，这个删除按钮的点击处理器还应该阻止点击事件向上冒泡 — 我们并不希望触发<li>的事件处理器，否则它会选中我们要删除的这位英雄。</li></p>
+<p>delete()处理器的逻辑略复杂：</p>
+<pre><code>delete(hero: Hero): void {
+  this.heroService
+      .delete(hero.id)
+      .then(() =&gt; {
+        this.heroes = this.heroes.filter(h =&gt; h !== hero);
+        if (this.selectedHero === hero) { this.selectedHero = null; }
+      });
+}
+</code></pre><p>当然，我们仍然把删除英雄的操作委托给了 hero 服务， 不过该组件仍然负责更新显示：它从数组中移除了被删除的英雄，如果删除的是正选中的英雄，还会清空选择。</p>
+<p>我们希望删除按钮被放在英雄条目的最右边。 于是 CSS 变成了这样：<br>src/app/heroes.component.css (additions)</p>
+<pre><code>button.delete {
+  float:right;
+  margin-top: 2px;
+  margin-right: .8em;
+  background-color: gray !important;
+  color:white;
+}
+</code></pre><p>hero 服务的delete()方法</p>
+<p>hero 服务的delete()方法使用 HTTP 的 delete() 方法来从服务器上移除该英雄：</p>
+<pre><code>delete(id: number): Promise&lt;void&gt; {
+  const url = `${this.heroesUrl}/${id}`;
+  return this.http.delete(url, {headers: this.headers})
+    .toPromise()
+    .then(() =&gt; null)
+    .catch(this.handleError);
+}
+</code></pre><p>可观察对象 (Observable)</p>
+<p>Http服务中的每个方法都返回一个 HTTP Response对象的Observable实例。</p>
+<p>我们的HeroService中把那个Observable对象转换成了Promise（承诺），并把这个承诺返回给了调用者。 这一节，我们将学会直接返回Observable，并且讨论何时以及为何那样做会更好。</p>
+<p>背景</p>
+<p>一个可观察对象是一个事件流，我们可以用数组型操作符来处理它。</p>
+<p>Angular 内核中提供了对可观察对象的基本支持。而我们这些开发人员可以自己从 RxJS 库中引入操作符和扩展。 我们会简短的讲解下如何做。</p>
+<p>快速回忆一下HeroService，它在http.get()返回的Observable后面串联了一个toPromise操作符。 该操作符把Observable转换成了Promise，并且我们把那个承诺返回给了调用者。</p>
+<p>转换成承诺通常是更好地选择，我们通常会要求http.get()获取单块数据。只要接收到数据，就算完成。 使用承诺这种形式的结果是让调用方更容易写，并且承诺已经在 JavaScript 程序员中被广泛接受了。</p>
+<p>但是请求并非总是“一次性”的。我们可以开始一个请求， 并且取消它，在服务器对第一个请求作出回应之前，再开始另一个不同的请求 。 像这样一个请求-取消-新请求的序列用承诺是很难实现的，但接下来我们会看到，它对于可观察对象却很简单。</p>
+<p>请求-取消-新请求的序列对于Promise来说是很难实现的，但是对Observable来说则很容易。</p>
+<p>支持按名搜索</p>
+<p>我们要为《英雄指南》添加一个英雄搜索特性。 当用户在搜索框中输入一个名字时，我们将不断发起 HTTP 请求，以获得按名字过滤的英雄。</p>
+<p>我们先创建HeroSearchService服务，它会把搜索请求发送到我们服务器上的 Web API。<br>src/app/hero-search.service.ts</p>
+<pre><code>import { Injectable } from &apos;@angular/core&apos;;
+import { Http }       from &apos;@angular/http&apos;;
+import { Observable }     from &apos;rxjs/Observable&apos;;
+import &apos;rxjs/add/operator/map&apos;;
+import { Hero }           from &apos;./hero&apos;;
+@Injectable()
+export class HeroSearchService {
+  constructor(private http: Http) {}
+  search(term: string): Observable&lt;Hero[]&gt; {
+    return this.http
+               .get(`app/heroes/?name=${term}`)
+               .map(response =&gt; response.json().data as Hero[]);
+  }
+}
+</code></pre><p>HeroSearchService中的http.get()调用和HeroService中的很相似，只是这次带了查询字符串。</p>
+<p>更重要的是：我们不再调用toPromise方法，而是从http.get 方法中返回一个Observable对象，之后调用RxJS的map操作符 来从返回数据中提取英雄。</p>
+<p>链式RxJS操作可以让我们简单、易读的处理响应数据。详见下面关于操作符的讨论</p>
+<h3 id="HeroSearchComponent"><a href="#HeroSearchComponent" class="headerlink" title="HeroSearchComponent"></a>HeroSearchComponent</h3><p>我们再创建一个新的HeroSearchComponent来调用这个新的HeroSearchService。</p>
+<p>组件模板很简单，就是一个输入框和一个显示匹配的搜索结果的列表。<br>src/app/hero-search.component.html</p>
+<pre><code>&lt;div id=&quot;search-component&quot;&gt;
+  &lt;h4&gt;Hero Search&lt;/h4&gt;
+  &lt;input #searchBox id=&quot;search-box&quot; (keyup)=&quot;search(searchBox.value)&quot; /&gt;
+  &lt;div&gt;
+    &lt;div * ngFor=&quot;let hero of heroes | async&quot;
+         (click)=&quot;gotoDetail(hero)&quot; class=&quot;search-result&quot; &gt;
+      {{hero.name}}
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>我们还要往这个新组件中添加样式。<br>src/app/hero-search.component.css</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">.search-result&#123;</div><div class="line">  border-bottom: 1px solid gray;</div><div class="line">  border-left: 1px solid gray;</div><div class="line">  border-right: 1px solid gray;</div><div class="line">  width:195px;</div><div class="line">  height: 16px;</div><div class="line">  padding: 5px;</div><div class="line">  background-color: white;</div><div class="line">  cursor: pointer;</div><div class="line">&#125;</div><div class="line">.search-result:hover &#123;</div><div class="line">  color: #eee;</div><div class="line">  background-color: #607D8B;</div><div class="line">&#125;</div><div class="line">#search-box&#123;</div><div class="line">  width: 200px;</div><div class="line">  height: 20px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当用户在搜索框中输入时，一个 keyup 事件绑定会调用该组件的search()方法，并传入新的搜索框的值。</p>
+<p>不出所料，* ngFor从该组件的heroes属性重复获取 hero 对象。这也没啥特别的。</p>
+<p>但是，接下来我们看到heroes属性现在是英雄列表的Observable对象，而不再只是英雄数组。 <em> ngFor不能用可观察对象做任何事，除非我们在它后面跟一个async pipe (AsyncPipe)。 这个async管道会订阅到这个可观察对象，并且为</em>ngFor生成一个英雄数组。</p>
+<p>该创建HeroSearchComponent类及其元数据了。<br>src/app/hero-search.component.ts</p>
+<pre><code>import { Component, OnInit } from &apos;@angular/core&apos;;
+import { Router }            from &apos;@angular/router&apos;;
+import { Observable }        from &apos;rxjs/Observable&apos;;
+import { Subject }           from &apos;rxjs/Subject&apos;;
+// Observable class extensions
+import &apos;rxjs/add/observable/of&apos;;
+// Observable operators
+import &apos;rxjs/add/operator/catch&apos;;
+import &apos;rxjs/add/operator/debounceTime&apos;;
+import &apos;rxjs/add/operator/distinctUntilChanged&apos;;
+import { HeroSearchService } from &apos;./hero-search.service&apos;;
+import { Hero } from &apos;./hero&apos;;
+@Component({
+  selector: &apos;hero-search&apos;,
+  templateUrl: &apos;./hero-search.component.html&apos;,
+  styleUrls: [ &apos;./hero-search.component.css&apos; ],
+  providers: [HeroSearchService]
+})
+export class HeroSearchComponent implements OnInit {
+  heroes: Observable&lt;Hero[]&gt;;
+  private searchTerms = new Subject&lt;string&gt;();
+  constructor(
+    private heroSearchService: HeroSearchService,
+    private router: Router) {}
+  // Push a search term into the observable stream.
+  search(term: string): void {
+    this.searchTerms.next(term);
+  }
+  ngOnInit(): void {
+    this.heroes = this.searchTerms
+      .debounceTime(300)        // wait 300ms after each keystroke before considering the term
+      .distinctUntilChanged()   // ignore if next search term is same as previous
+      .switchMap(term =&gt; term   // switch to new observable each time the term changes
+        // return the http search observable
+        ? this.heroSearchService.search(term)
+        // or the observable of empty heroes if there was no search term
+        : Observable.of&lt;Hero[]&gt;([]))
+      .catch(error =&gt; {
+        // TODO: add real error handling
+        console.log(error);
+        return Observable.of&lt;Hero[]&gt;([]);
+      });
+  }
+  gotoDetail(hero: Hero): void {
+    let link = [&apos;/detail&apos;, hero.id];
+    this.router.navigate(link);
+  }
+}
+</code></pre><p>搜索词</p>
+<p>仔细看下这个searchTerms：</p>
+<pre><code>private searchTerms = new Subject&lt;string&gt;();
+// Push a search term into the observable stream.
+search(term: string): void {
+  this.searchTerms.next(term);
+}
+</code></pre><p>Subject（主题）是一个可观察的事件流中的生产者。 searchTerms生成一个产生字符串的Observable，用作按名称搜索时的过滤条件。Each call to search() puts a new string into this subject’s observable stream by calling next().</p>
+<p>每当调用search()时都会调用next()来把新的字符串放进该主题的可观察流中。</p>
+<p>初始化 heroes 属性(ngOnInit)</p>
+<p>Subject也是一个Observable对象。 我们要把搜索词的流转换成Hero数组的流，并把结果赋值给heroes属性。</p>
+<pre><code>heroes: Observable&lt;Hero[]&gt;;
+ngOnInit(): void {
+  this.heroes = this.searchTerms
+    .debounceTime(300)        // wait 300ms after each keystroke before considering the term
+    .distinctUntilChanged()   // ignore if next search term is same as previous
+    .switchMap(term =&gt; term   // switch to new observable each time the term changes
+      // return the http search observable
+      ? this.heroSearchService.search(term)
+      // or the observable of empty heroes if there was no search term
+      : Observable.of&lt;Hero[]&gt;([]))
+    .catch(error =&gt; {
+      // TODO: add real error handling
+      console.log(error);
+      return Observable.of&lt;Hero[]&gt;([]);
+    });
+}
+</code></pre><p>如果我们直接把每一次用户按键都直接传给HeroSearchService，就会发起一场 HTTP 请求风暴。 这可不好玩。我们不希望占用服务器资源，也不想耗光蜂窝移动网络的流量。</p>
+<p>不过，我们可以在字符串的Observable后面串联一些Observable操作符，来归并这些请求。 我们将对HeroSearchService发起更少的调用，并且仍然获得足够及时的响应。做法如下：</p>
+<ul>
+<li><p>在传出最终字符串之前，debounceTime(300)将会等待，直到新增字符串的事件暂停了 300 毫秒。 我们实际发起请求的间隔永远不会小于 300ms。</p>
+</li>
+<li><p>distinctUntilChanged确保只在过滤条件变化时才发送请求， 这样就不会重复请求同一个搜索词了。</p>
+</li>
+<li><p>switchMap()会为每个从debounce和distinctUntilChanged中通过的搜索词调用搜索服务。 它会取消并丢弃以前的搜索可观察对象，只保留最近的。</p>
+</li>
+<li><p>catch拦截失败的可观察对象。这个简单的例子中只是把错误信息打印到控制台（但实际的应用需要做更多事），然后返回一个包含空数组的可观察对象，以清空搜索结果。</p>
+</li>
+</ul>
+<h3 id="导入-RxJS-操作符"><a href="#导入-RxJS-操作符" class="headerlink" title="导入 RxJS 操作符"></a>导入 RxJS 操作符</h3><p>大部分RxJS操作符都不包括在Angular的Observable基本实现中，基本实现只包括Angular本身所需的功能。</p>
+<p>如果想要更多的RxJS功能，我们必须导入其所定义的库来扩展Observable对象， 以下是这个模块所需导入的所有RxJS操作符：<br>src/app/hero-search.component.ts (rxjs imports)</p>
+<p>import { Observable }        from ‘rxjs/Observable’;<br>import { Subject }           from ‘rxjs/Subject’;</p>
+<p>// Observable class extensions<br>import ‘rxjs/add/observable/of’;</p>
+<p>// Observable operators<br>import ‘rxjs/add/operator/catch’;<br>import ‘rxjs/add/operator/debounceTime’;<br>import ‘rxjs/add/operator/distinctUntilChanged’;</p>
+<p>你可能并不熟悉这种import ‘rxjs/add/…’语法，它缺少了花括号中的导入列表：{…}。</p>
+<p>这是因为我们并不需要操作符本身，这种情况下，我们所做的其实是导入这个库，加载并运行其中的脚本， 它会把操作符添加到Observable类中。</p>
+<p>为仪表盘添加搜索组件</p>
+<p>将表示“英雄搜索”组件的 HTML 元素添加到DashboardComponent模版的最后面。</p>
+<pre><code>&lt;h3&gt;Top Heroes&lt;/h3&gt;
+&lt;div class=&quot;grid grid-pad&quot;&gt;
+  &lt;a * ngFor=&quot;let hero of heroes&quot;  [routerLink]=&quot;[&apos;/detail&apos;, hero.id]&quot;  class=&quot;col-1-4&quot;&gt;
+    &lt;div class=&quot;module hero&quot;&gt;
+      &lt;h4&gt;{{hero.name}}&lt;/h4&gt;
+    &lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+&lt;hero-search&gt;&lt;/hero-search&gt;
+</code></pre><p>最后，从hero-search.component.ts中导入HeroSearchComponent并将其添加到declarations数组中。<br>src/app/app.module.ts (search)</p>
+<pre><code>declarations: [
+  AppComponent,
+  DashboardComponent,
+  HeroDetailComponent,
+  HeroesComponent,
+  HeroSearchComponent
+],
+</code></pre><p>再次运行该应用，跳转到仪表盘，并在英雄下方的搜索框里输入一些文本。 运行效果如下：<br><img src="http://oq6u0ixei.bkt.clouddn.com/QQ20170523-0@2x.png" alt=""></p>
+<blockquote>
+<p>上一篇：<a href="http://localhost:4000/2017/05/18/AngularJS5" target="_blank" rel="external">AngularJS之英雄联盟路由</a>.<br>  下一篇：<a href="http://localhost:4000/2017/06/01/javascript-sort" target="_blank" rel="external">javascript之sort()</a>.</p>
+</blockquote>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/06/01/javascript-sort/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/05/18/AngularJS5/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="small fish's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        1195802401@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto: 1195802501@qq.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">7</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">19</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://prettysheep.info/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/prettysheepsheep/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;小鱼的博客
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

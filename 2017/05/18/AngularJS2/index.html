@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            AngularJS之英雄联盟主从结构 | 
+        
+        小鱼的博客
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="small fish">
+    <meta name="description" content="null">
+    <meta name="keywords" content="小鱼,小鱼空间,小鱼博客站，小鱼博客，技术博客，前端技术，前端,AngularJS">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="小鱼的博客">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://prettysheep.info">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="AngularJS之英雄联盟主从结构 | 小鱼的博客">
+    <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="AngularJS"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动"><span class="post-toc-number">1.</span> <span class="post-toc-text">启动</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建英雄"><span class="post-toc-number">2.</span> <span class="post-toc-text">创建英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#暴露英雄"><span class="post-toc-number">3.</span> <span class="post-toc-text">暴露英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在模板中显示英雄"><span class="post-toc-number">4.</span> <span class="post-toc-text">在模板中显示英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#通过-ngFor-来显示英雄列表"><span class="post-toc-number">5.</span> <span class="post-toc-text">通过 ngFor 来显示英雄列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#给我们的英雄们“美容”"><span class="post-toc-number">6.</span> <span class="post-toc-text">给我们的英雄们“美容”</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选择英雄"><span class="post-toc-number">7.</span> <span class="post-toc-text">选择英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#处理点击事件"><span class="post-toc-number">8.</span> <span class="post-toc-text">处理点击事件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加点击处理器以暴露选中的英雄"><span class="post-toc-number">9.</span> <span class="post-toc-text">添加点击处理器以暴露选中的英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#双向绑定"><span class="post-toc-number">10.</span> <span class="post-toc-text">双向绑定</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#导入-FormsModule"><span class="post-toc-number">11.</span> <span class="post-toc-text">导入 FormsModule</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用-ngIf-隐藏空的详情"><span class="post-toc-number">12.</span> <span class="post-toc-text">使用 ngIf 隐藏空的详情</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#给所选英雄添加样式"><span class="post-toc-number">13.</span> <span class="post-toc-text">给所选英雄添加样式</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                AngularJS之英雄联盟主从结构
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>small fish</strong>
+        <span>5月 18, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACVElEQVR42u3aUXaDQAgFUPe/6XYBre0DDJqc65enSZy58yEUOL4++jrw8PDw8PDw8PAexjvi65cH/fj07Pu9VZq/wsPDw1vh/fOqPVn47P5s+WStC/aGh4eHt8hLtpXA8udPDg4PDw/vvXh5AMjDQ/Vo8PDw8N6Rl2/u7xJDchB4eHh4z+Ql//BPSrflVtZ+rQUPDw8v5uVNpv371f4eHh4eXsDrvax7KfVkTKE5dIWHh4f3Al61RJsk3Pl9tWwR7QcPDw9vhVcdk5q0uKpDBvlu8fDw8DZ51YZTHjDyA8pT9lHcw8PDw7uUNwFMkulJIQMPDw/vLl65yZQMPw2KEflB4OHh4d3Fq26xVwiutrh6KTseHh7eDi9Pi6uFhvxoJoVjPDw8vE1eNW1NwkD15V5OmvMyLh4eHt7LeNXR0rzcMC9tlIMQHh4e3gqv1+wvNKWKISQfXMDDw8N7Ju/vZSYtq3xwoTl0hYeHh7fO6y2QFGSrLbHCWAMeHh7eCq9ajJh8v1p6yJ+Dh4eHt8PrLdMLJNWQ0BxsxcPDw1vkVV/NVVK16FD9Jh4eHt5dvOSqDhbMn1AIJ3h4eHiLvKsKr73BggkbDw8Pb5PXCwkJaXKIyRHg4eHh3cU74mv+qzyQTAYX8PDw8HZ4eTBIXv29v/TSbjw8PLx7eVeVU/MjqBYjRg0wPDw8vFt5kxQ5/7Q5yoCHh4f3YF61xZUXNRJYc3QADw8P71Jer+lVLWRMjgYPDw/vObx5CaCa/vZS7ejQ8fDw8F7M+7wLDw8PDw8PDw/vAdc3QdQWEemKI3wAAAAASUVORK5CYII=">
+        </ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/AngularJS/">AngularJS</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=AngularJS之英雄联盟主从结构&url=http://prettysheep.info//2017/05/18/AngularJS2/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=AngularJS之英雄联盟主从结构&url=http://prettysheep.info//2017/05/18/AngularJS2/index.html&via=small fish" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://prettysheep.info//2017/05/18/AngularJS2/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://prettysheep.info//2017/05/18/AngularJS2/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><blockquote>
+<p>找到相应的文件：  ng serve -o</p>
+</blockquote>
+<h3 id="创建英雄"><a href="#创建英雄" class="headerlink" title="创建英雄"></a>创建英雄</h3><blockquote>
+<p>注意：以下里面所写的反引号都应该是一个，这里是为了在md文档里展示代码好看。</p>
+</blockquote>
+<p>先在src/app/app.component.ts里创建一个Hero类，并导出类。</p>
+<pre><code>export class Hero {
+  id: number;
+  name: string;
+}
+</code></pre><p>再在src/app/app.component.ts视图模板创建一个由十位英雄组成的数组。</p>
+<blockquote>
+<p>定义了一个HEROES常量，值是Hero[]数组对象。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> HEROES: Hero[] = [</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">11</span>, <span class="attr">name</span>: <span class="string">'Mr. Nice'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">12</span>, <span class="attr">name</span>: <span class="string">'Narco'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">13</span>, <span class="attr">name</span>: <span class="string">'Bombasto'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">14</span>, <span class="attr">name</span>: <span class="string">'Celeritas'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">15</span>, <span class="attr">name</span>: <span class="string">'Magneta'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">16</span>, <span class="attr">name</span>: <span class="string">'RubberMan'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">17</span>, <span class="attr">name</span>: <span class="string">'Dynama'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">18</span>, <span class="attr">name</span>: <span class="string">'Dr IQ'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">19</span>, <span class="attr">name</span>: <span class="string">'Magma'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">20</span>, <span class="attr">name</span>: <span class="string">'Tornado'</span> &#125;</div><div class="line">];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>HEROES是一个由Hero类的实例构成的数组，我们在第一部分定义过它。 我们当然希望从一个 Web 服务中获取这个英雄列表，但别急，我们得把步子迈得小一点，先用一组模拟出来的英雄。</p>
+</blockquote>
+<h3 id="暴露英雄"><a href="#暴露英雄" class="headerlink" title="暴露英雄"></a>暴露英雄</h3><p>我们在AppComponent上创建一个公共属性，用来暴露这些英雄，以供绑定。</p>
+<pre><code>heroes = HEROES;
+</code></pre><p>我们并不需要明确定义heroes属性的数据类型，TypeScript 能从HEROES数组中推断出来。</p>
+<blockquote>
+<p>英雄的数据从实现类中分离了出来，因为最终，英雄的名字会来自一个数据服务。</p>
+</blockquote>
+<h3 id="在模板中显示英雄"><a href="#在模板中显示英雄" class="headerlink" title="在模板中显示英雄"></a>在模板中显示英雄</h3><p>我们还要在模板中创建一个无序列表来显示这些英雄的名字。 那就在标题和英雄详情之间，插入下面这段 HTML 代码。</p>
+<pre><code>&lt;ul class=&quot;heroes&quot;&gt;
+  &lt;li&gt;
+  &lt;!-- each hero goes here --&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>现在，我们有了一个模板。接下来，就用英雄们的数据来填充它。</p>
+<h3 id="通过-ngFor-来显示英雄列表"><a href="#通过-ngFor-来显示英雄列表" class="headerlink" title="通过 ngFor 来显示英雄列表"></a>通过 ngFor 来显示英雄列表</h3><p>我们想要把组件中的heroes数组绑定到模板中，迭代并逐个显示它们。首先，修改<li>标签，往上添加内置指令*ngFor。</li></p>
+<pre><code>&lt;li * ngFor=&quot;let hero of heroes&quot;&gt;
+</code></pre><blockquote>
+<p>ngFor的* 前缀表示<code>&lt;li&gt;</code>及其子元素组成了一个主控模板。ngFor指令在AppComponent.heroes属性返回的heroes数组上迭代，并输出此模板的实例。<br>  引号中赋值给ngFor的那段文本表示“从heroes数组中取出每个英雄，存入一个局部的hero变量，并让它在相应的模板实例中可用”。</p>
+<p>注意：* 号没有空格，这里是md格式</p>
+</blockquote>
+<p>接着，我们在<code>&lt;li&gt;</code>标签中插入一些内容，以便使用模板变量hero来显示英雄的属性。</p>
+<pre><code>&lt;li * ngFor=&quot;let hero of heroes&quot;&gt;
+&lt;span class=&quot;badge&quot;&gt;{{hero.id}}&lt;/span&gt; {{hero.name}}
+&lt;/li&gt;
+</code></pre><p>当浏览器刷新时，我们就看到了英雄列表。</p>
+<h3 id="给我们的英雄们“美容”"><a href="#给我们的英雄们“美容”" class="headerlink" title="给我们的英雄们“美容”"></a>给我们的英雄们“美容”</h3><p>要想给我们的组件添加一些样式，请把@Component装饰器的styles属性设置为下列 CSS 类：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">styles: [``</div><div class="line">.selected &#123;</div><div class="line">background-color: #CFD8DC !important;</div><div class="line">color: white;</div><div class="line">&#125;</div><div class="line">.heroes &#123;</div><div class="line">margin: 0 0 2em 0;</div><div class="line">list-style-type: none;</div><div class="line">padding: 0;</div><div class="line">width: 15em;</div><div class="line">&#125;</div><div class="line">.heroes li &#123;</div><div class="line">cursor: pointer;</div><div class="line">position: relative;</div><div class="line">left: 0;</div><div class="line">background-color: #EEE;</div><div class="line">margin: .5em;</div><div class="line">padding: .3em 0;</div><div class="line">height: 1.6em;</div><div class="line">border-radius: 4px;</div><div class="line">&#125;</div><div class="line">.heroes li.selected:hover &#123;</div><div class="line">background-color: #BBD8DC !important;</div><div class="line">color: white;</div><div class="line">&#125;</div><div class="line">.heroes li:hover &#123;</div><div class="line">color: #607D8B;</div><div class="line">background-color: #DDD;</div><div class="line">left: .1em;</div><div class="line">&#125;</div><div class="line">.heroes .text &#123;</div><div class="line">position: relative;</div><div class="line">top: -3px;</div><div class="line">&#125;</div><div class="line">.heroes .badge &#123;</div><div class="line">display: inline-block;</div><div class="line">font-size: small;</div><div class="line">color: white;</div><div class="line">padding: 0.8em 0.7em 0 0.7em;</div><div class="line">background-color: #607D8B;</div><div class="line">line-height: 1em;</div><div class="line">position: relative;</div><div class="line">left: -1px;</div><div class="line">top: -4px;</div><div class="line">height: 1.8em;</div><div class="line">margin-right: .8em;</div><div class="line">border-radius: 4px 0 0 4px;</div><div class="line">&#125;</div><div class="line">``]</div></pre></td></tr></table></figure></p>
+<p>注意，我们又使用了反引号语法来书写多行字符串。</p>
+<p>添加这些样式会让此文件变得更长。在后面的章节中，我们将会把这些样式移到单独的文件中去</p>
+<p>当我们为一个组件指定样式时，它们的作用域将仅限于该组件。 上面的例子中，这些样式只会作用于AppComponent组件，而不会“泄露”到外部 HTML 中。</p>
+<p>用于显示英雄们的模板应该是这样的：</p>
+<pre><code>&lt;h2&gt;My Heroes&lt;/h2&gt;
+&lt;ul class=&quot;heroes&quot;&gt;
+  &lt;li * ngFor=&quot;let hero of heroes&quot;&gt;
+    &lt;span class=&quot;badge&quot;&gt;{{hero.id}}&lt;/span&gt; {{hero.name}}
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h3 id="选择英雄"><a href="#选择英雄" class="headerlink" title="选择英雄"></a>选择英雄</h3><p>我们的应用已经有了英雄列表和单个英雄的详情视图。 但列表和单独的英雄之间还没有任何关联。 我们希望用户在列表中选中一个英雄，然后让这个被选中的英雄出现在详情视图中。 这种 UI 布局模式，通常被称为“主从结构”。 在这个例子中，主视图是英雄列表，从视图则是被选中的英雄。</p>
+<p>接下来，我们要通过组件中的一个selectedHero属性来连接主从视图，它被绑定到了点击事件上</p>
+<h3 id="处理点击事件"><a href="#处理点击事件" class="headerlink" title="处理点击事件"></a>处理点击事件</h3><p>我们再往<li>元素上插入一句点击事件的绑定代码：</li></p>
+<pre><code>&lt;li * ngFor=&quot;let hero of heroes&quot; (click)=&quot;onSelect(hero)&quot;&gt;
+  ...
+&lt;/li&gt;
+</code></pre><p>圆括号标识<li>元素上的click事件是绑定的目标。 等号右边的onSelect(hero)表达式调用AppComponent的onSelect()方法，并把模板输入变量hero作为参数传进去。 它是我们前面在ngFor指令中定义的那个hero变量。</li></p>
+<h3 id="添加点击处理器以暴露选中的英雄"><a href="#添加点击处理器以暴露选中的英雄" class="headerlink" title="添加点击处理器以暴露选中的英雄"></a>添加点击处理器以暴露选中的英雄</h3><p>我们不再需要AppComponent的hero属性，因为不需要再显示单个的英雄，我们只需要显示英雄列表。但是用户可以点选一个英雄。 所以我们要把hero属性替换成selectedHero属性。</p>
+<pre><code>selectedHero: Hero;
+</code></pre><p>在用户选取一个英雄之前，所有的英雄名字都应该是未选中的。所以我们不希望像hero一样初始化selectedHero变量。</p>
+<p>现在，添加一个onSelect方法，用于将用户点击的英雄赋给selectedHero属性。</p>
+<pre><code>onSelect(hero: Hero): void {
+  this.selectedHero = hero;
+}
+</code></pre><p>我们将把所选英雄的详细信息显示在模板中。目前，它仍然引用之前的hero属性。 我们这就修改模板，让它绑定到新的selectedHero属性。</p>
+<pre><code>&lt;h2&gt;{{selectedHero.name}} details!&lt;/h2&gt;
+&lt;div&gt;&lt;label&gt;id: &lt;/label&gt;{{selectedHero.id}}&lt;/div&gt;
+&lt;div&gt;
+&lt;label&gt;name: &lt;/label&gt;
+&lt;input [(ngModel)]=&quot;selectedHero.name&quot; placeholder=&quot;name&quot;/&gt;
+&lt;/div&gt;
+</code></pre><blockquote>
+<p>注意：这里的input是输入属性，当用户输入时，这个输入框应该能同时显示和修改英雄的name属性。<br>       也就是说，我们要在表单元素input和组件的hero.name属性之间建立双向绑定。</p>
+</blockquote>
+<h3 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h3><pre><code>&lt;div&gt;
+  &lt;label&gt;name: &lt;/label&gt;
+  &lt;input [(ngModel)]=&quot;hero.name&quot; placeholder=&quot;name&quot;&gt;
+&lt;/div&gt;
+</code></pre><p>[(ngModel)]是一个Angular语法，用与把hero.name绑定到输入框中。 它的数据流是双向的：从属性到输入框，并且从输入框回到属性。</p>
+<p>不幸的是，做了这项改动之后，我们的程序崩溃了。 打开浏览器的控制台，我们会看到Angular抱怨说：“ngModel … isn’t a known property of input.”（ngModel不是input元素的已知属性）</p>
+<p>虽然NgModel是一个有效的Angular指令，但它默认情况下却是不可用的。 它属于一个可选模块FormsModule。 我们必须选择使用那个模块。</p>
+<h3 id="导入-FormsModule"><a href="#导入-FormsModule" class="headerlink" title="导入 FormsModule"></a>导入 FormsModule</h3><p>打开app.module.ts文件，并且从@angular/forms库中导入符号FormsModule。 然后把FormsModule添加到@NgModule元数据的imports数组中，它是当前应用正在使用的外部模块列表。</p>
+<p>修改后的AppModule是这样的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NgModule &#125;      <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</div><div class="line"><span class="keyword">import</span> &#123; FormsModule &#125;   <span class="keyword">from</span> <span class="string">'@angular/forms'</span>; <span class="comment">// &lt;-- NgModel lives here</span></div><div class="line"><span class="keyword">import</span> &#123; AppComponent &#125;  <span class="keyword">from</span> <span class="string">'./app.component'</span>;</div><div class="line">@NgModule(&#123;</div><div class="line">  <span class="attr">imports</span>: [</div><div class="line">    BrowserModule,</div><div class="line">    FormsModule <span class="comment">// &lt;-- import the FormsModule before binding with [(ngModel)]</span></div><div class="line">  ],</div><div class="line">  <span class="attr">declarations</span>: [</div><div class="line">    AppComponent</div><div class="line">  ],</div><div class="line">  <span class="attr">bootstrap</span>: [ AppComponent ]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppModule</span> </span>&#123; &#125;</div></pre></td></tr></table></figure>
+<h3 id="使用-ngIf-隐藏空的详情"><a href="#使用-ngIf-隐藏空的详情" class="headerlink" title="使用 ngIf 隐藏空的详情"></a>使用 ngIf 隐藏空的详情</h3><p>当应用加载时，我们会看到一个英雄列表，但还没有任何英雄被选中。 selectedHero属性是undefined。 因此，我们会看到浏览器控制台中出现下列错误：</p>
+<pre><code>EXCEPTION: TypeError: Cannot read property &apos;name&apos; of undefined in [null]
+</code></pre><p>虽然我们要在模板中显示的是selectedHero.name，但在选中了一个英雄之前，我们必须让这些英雄详情留在DOM之外。</p>
+<p>我们可以把模板中的英雄详情内容区放在一个<div>中。 然后，添加一个ngIf内置指令，把ngIf的值设置为组件的selectedHero属性。</div></p>
+<pre><code>&lt;div * ngIf=&quot;selectedHero&quot;&gt;
+&lt;h2&gt;{{selectedHero.name}} details!&lt;/h2&gt;
+&lt;div&gt;&lt;label&gt;id: &lt;/label&gt;{{selectedHero.id}}&lt;/div&gt;
+&lt;div&gt;
+&lt;label&gt;name: &lt;/label&gt;
+&lt;input [(ngModel)]=&quot;selectedHero.name&quot; placeholder=&quot;name&quot;/&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><blockquote>
+<p>注意:别忘了ngIf前的星号 (* )。</p>
+</blockquote>
+<p>应用不再出错，而名字列表也再次显示在浏览器中。</p>
+<p>当没有选中英雄时，ngIf指令会从 DOM 中移除表示英雄详情的这段 HTML 。 没有了表示英雄详情的元素，也就不用担心绑定问题。</p>
+<p>当用户选取了一个英雄，selectedHero变成了“已定义的”值，于是ngIf把英雄详情加回 DOM 中，并计算它所嵌套的各种绑定。</p>
+<h3 id="给所选英雄添加样式"><a href="#给所选英雄添加样式" class="headerlink" title="给所选英雄添加样式"></a>给所选英雄添加样式</h3><p>我们在下面的详情区看到了选中的英雄，但是我们还是没法在上面的列表区快速定位这位英雄。</p>
+<p>在我们前面添加的styles元数据中，有一个名叫selected的自定义CSS类。 要想让选中的英雄更加醒目，当用户点击一个英雄名字时，我们要为<li>添加selected类。 例如，当用户点击“Magneta”时，它应该使用不一样的醒目的背景色。<br><img src="http://i2.muimg.com/588926/7b65d24067c441e5.png" alt=""></li></p>
+<p>在这个模板中，往<li>上添加一个[class.selected]绑定：</li></p>
+<pre><code>[class.selected]=&quot;hero === selectedHero&quot;
+</code></pre><p>当表达式(hero === selectedHero)为true时，Angular会添加一个CSS类selected。为false时则会移除selected类。</p>
+<pre><code>&lt;li * ngFor=&quot;let hero of heroes&quot;
+  [class.selected]=&quot;hero === selectedHero&quot;
+  (click)=&quot;onSelect(hero)&quot;&gt;
+  &lt;span class=&quot;badge&quot;&gt;{{hero.id}}&lt;/span&gt; {{hero.name}}
+&lt;/li&gt;
+</code></pre><p>浏览器重新加载了我们的应用。 我们选中英雄 Magneta，通过背景色的变化，它被清晰的标记出来。</p>
+<p><img src="http://i4.buimg.com/588926/9f1484f873662bfd.png" alt=""></p>
+<p>完整的app.component.ts文件如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">import &#123; Component &#125; from '@angular/core';</div><div class="line">export class Hero &#123;</div><div class="line">  id: number;</div><div class="line">  name: string;</div><div class="line">&#125;</div><div class="line">const HEROES: Hero[] = [</div><div class="line">  &#123; id: 11, name: 'Mr. Nice' &#125;,</div><div class="line">  &#123; id: 12, name: 'Narco' &#125;,</div><div class="line">  &#123; id: 13, name: 'Bombasto' &#125;,</div><div class="line">  &#123; id: 14, name: 'Celeritas' &#125;,</div><div class="line">  &#123; id: 15, name: 'Magneta' &#125;,</div><div class="line">  &#123; id: 16, name: 'RubberMan' &#125;,</div><div class="line">  &#123; id: 17, name: 'Dynama' &#125;,</div><div class="line">  &#123; id: 18, name: 'Dr IQ' &#125;,</div><div class="line">  &#123; id: 19, name: 'Magma' &#125;,</div><div class="line">  &#123; id: 20, name: 'Tornado' &#125;</div><div class="line">];</div><div class="line">@Component(&#123;</div><div class="line">  selector: 'my-app',</div><div class="line">  template: `</div><div class="line">    &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</div><div class="line">    &lt;h2&gt;My Heroes&lt;/h2&gt;</div><div class="line">    &lt;ul class="heroes"&gt;</div><div class="line">      &lt;li * ngFor="let hero of heroes"</div><div class="line">        [class.selected]="hero === selectedHero"</div><div class="line">        (click)="onSelect(hero)"&gt;</div><div class="line">        &lt;span class="badge"&gt;&#123;&#123;hero.id&#125;&#125;&lt;/span&gt; &#123;&#123;hero.name&#125;&#125;</div><div class="line">      &lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line">    &lt;div * ngIf="selectedHero"&gt;</div><div class="line">      &lt;h2&gt;&#123;&#123;selectedHero.name&#125;&#125; details!&lt;/h2&gt;</div><div class="line">      &lt;div&gt;&lt;label&gt;id: &lt;/label&gt;&#123;&#123;selectedHero.id&#125;&#125;&lt;/div&gt;</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;label&gt;name: &lt;/label&gt;</div><div class="line">        &lt;input [(ngModel)]="selectedHero.name" placeholder="name"/&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  `,</div><div class="line">  styles: [``</div><div class="line">    .selected &#123;</div><div class="line">      background-color: #CFD8DC !important;</div><div class="line">      color: white;</div><div class="line">    &#125;</div><div class="line">    .heroes &#123;</div><div class="line">      margin: 0 0 2em 0;</div><div class="line">      list-style-type: none;</div><div class="line">      padding: 0;</div><div class="line">      width: 15em;</div><div class="line">    &#125;</div><div class="line">    .heroes li &#123;</div><div class="line">      cursor: pointer;</div><div class="line">      position: relative;</div><div class="line">      left: 0;</div><div class="line">      background-color: #EEE;</div><div class="line">      margin: .5em;</div><div class="line">      padding: .3em 0;</div><div class="line">      height: 1.6em;</div><div class="line">      border-radius: 4px;</div><div class="line">    &#125;</div><div class="line">    .heroes li.selected:hover &#123;</div><div class="line">      background-color: #BBD8DC !important;</div><div class="line">      color: white;</div><div class="line">    &#125;</div><div class="line">    .heroes li:hover &#123;</div><div class="line">      color: #607D8B;</div><div class="line">      background-color: #DDD;</div><div class="line">      left: .1em;</div><div class="line">    &#125;</div><div class="line">    .heroes .text &#123;</div><div class="line">      position: relative;</div><div class="line">      top: -3px;</div><div class="line">    &#125;</div><div class="line">    .heroes .badge &#123;</div><div class="line">      display: inline-block;</div><div class="line">      font-size: small;</div><div class="line">      color: white;</div><div class="line">      padding: 0.8em 0.7em 0 0.7em;</div><div class="line">      background-color: #607D8B;</div><div class="line">      line-height: 1em;</div><div class="line">      position: relative;</div><div class="line">      left: -1px;</div><div class="line">      top: -4px;</div><div class="line">      height: 1.8em;</div><div class="line">      margin-right: .8em;</div><div class="line">      border-radius: 4px 0 0 4px;</div><div class="line">    &#125;</div><div class="line">  ``]</div><div class="line">&#125;)</div><div class="line">export class AppComponent &#123;</div><div class="line">  title = 'Tour of Heroes';</div><div class="line">  heroes = HEROES;</div><div class="line">  selectedHero: Hero;</div><div class="line">  onSelect(hero: Hero): void &#123;</div><div class="line">    this.selectedHero = hero;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：以上里面所写的反引号都应该是一个，这里是为了在md文档里展示代码好看。</p>
+<p>上一篇：<a href="http://localhost:4000/2017/05/18/AngularJS1" target="_blank" rel="external">AngularJS之英雄联盟介绍</a>.<br>  下一篇：<a href="http://localhost:4000/2017/05/18/AngularJS3" target="_blank" rel="external">AngularJS之英雄联盟多个组件</a>.</p>
+</blockquote>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/05/18/AngularJS3/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/05/18/AngularJS1/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="small fish's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        1195802401@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto: 1195802501@qq.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">7</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">19</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://prettysheep.info/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/prettysheepsheep/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;小鱼的博客
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

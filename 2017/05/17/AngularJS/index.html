@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            玩转 AngularJS 指令的 Scope (作用域) | 
+        
+        小鱼的博客
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="small fish">
+    <meta name="description" content="null">
+    <meta name="keywords" content="小鱼,小鱼空间,小鱼博客站，小鱼博客，技术博客，前端技术，前端,AngularJS">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="小鱼的博客">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://prettysheep.info">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="玩转 AngularJS 指令的 Scope (作用域) | 小鱼的博客">
+    <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="AngularJS"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#scope-false"><span class="post-toc-number">1.</span> <span class="post-toc-text">scope = false</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#scope-true"><span class="post-toc-number">2.</span> <span class="post-toc-text">scope = true</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#scope"><span class="post-toc-number">3.</span> <span class="post-toc-text">scope = {}</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                玩转 AngularJS 指令的 Scope (作用域)
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>small fish</strong>
+        <span>5月 17, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACV0lEQVR42u3aQXLjMAwEQP//07sPSEkeABTspFonlx2JbB0IZsDXvz99vfDw8PDw8PDw8L6M94qvy8f9+PXq76+eeTVKb254eHh4O7w3S+0tIJlc9fmjueHh4eEt8u4X7lOf7xf3/F48PDy838XLN9xJIemNi4eHh/e7eMmGO2EkbDw8PLxv5uXL+v2QvVjhK7IWPDw8vJiXN5n2P6/29/Dw8PAC3qnFOvk+PxwwmiEeHh7ew7xqgyqZaA95dVf5EBgeHh7eR3n3gOrryF/Z6Dl4eHh4D/N6zafJ8DkgLy14eHh4n+Ilm+PJcl9FNl8cHh4e3od4vbKRTCXH5GEHHh4e3iavt6BXW2W9RtexrAUPDw/vAV61DPTKQw6oxiV4eHh4m7z85kmr7H5x74Ugx1JqPDw8vCKvGrMmQUNyTcKON6UFDw8Pb4VX3TRXl/XJoatqqIGHh4f3NG++ae5trHuw5n8MeHh4eEd5k0lUW2i9NliyWcfDw8Pb5+WT6EW0+YvIG2l4eHh4n+UlNyftsWqMm4TI5W/w8PDwVnjVzevmUarqq8HDw8Pb5E3C2cnSn0e3ozACDw8P72FedfhJdFtlvClLeHh4eA/zqle+Oc6bZ6eegIeHh7fDqwavp0pIb0sdbdPx8PDwVninjluV2/yDwtBMqfHw8PCO8qoL9GgSrbj2cAMMDw8Pb5032YhPisqx/h4eHh7eOq96IGDe6LovNnh4eHj7vLzpFQ3TOiJQjXrx8PDwPsWrRgA5Ly82kwgYDw8Pb5P39y48PDw8PDw8PLwvuP4DTEUf66L5WxYAAAAASUVORK5CYII=">
+        </ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/AngularJS/">AngularJS</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=玩转 AngularJS 指令的 Scope (作用域)&url=http://prettysheep.info//2017/05/17/AngularJS/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=玩转 AngularJS 指令的 Scope (作用域)&url=http://prettysheep.info//2017/05/17/AngularJS/index.html&via=small fish" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://prettysheep.info//2017/05/17/AngularJS/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://prettysheep.info//2017/05/17/AngularJS/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h3 id="scope-false"><a href="#scope-false" class="headerlink" title="scope = false"></a>scope = false</h3><p>首先我们来看一下，当scope参数被设置为false时有什么情况发生<br>在这种情况下，在指令模板中可以直接使用父作用域中的变量，函数<br>首先我们来创建一个指令，代码如下所示：<br>JS代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">"MyApp"</span>, [])</div><div class="line">    .controller(<span class="string">"MyController"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope</span>) </span>&#123;</div><div class="line">        <span class="comment">//J1 这里我们在作用域里初始化两个变量</span></div><div class="line">    $scope.name = <span class="string">"dreamapple"</span>;</div><div class="line">    $scope.age = <span class="number">20</span>;</div><div class="line">        <span class="comment">//J2 创建一个方法，修改我们创建的对象的年龄</span></div><div class="line">    $scope.changeAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        $scope.age = <span class="number">22</span>;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">        <span class="comment">//J3 创建我们的指令，指令名字为"myDirective"</span></div><div class="line"></div><div class="line">    .directive(<span class="string">"myDirective"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> obj = &#123;</div><div class="line">        <span class="comment">//J4   指令的声明模式为 "AE" 属性和元素</span></div><div class="line">        restrict: <span class="string">"AE"</span>,</div><div class="line">        <span class="comment">//J5   指令继承父作用域的属性和方法</span></div><div class="line">        scope: <span class="literal">false</span>,</div><div class="line">        <span class="attr">replace</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">template</span>: <span class="string">"&lt;div class='my-directive'&gt;"</span> +</div><div class="line">            <span class="string">"&lt;h3&gt;下面部分是我们创建的指令生成的&lt;/h3&gt;"</span> +</div><div class="line">            <span class="string">"我的名字是：&lt;span ng-bind='name'&gt;&lt;/span&gt;&lt;br/&gt;"</span> +</div><div class="line">            <span class="string">"我的年龄是：&lt;span ng-bind='age'&gt;&lt;/span&gt;"</span> +</div><div class="line">            <span class="string">"&lt;input type='text' ng-model='name'&gt;"</span>+</div><div class="line">            <span class="string">" &lt;/div&gt;"</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> obj;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>HTML代码：</p>
+<pre><code>&lt;div ng-app=&quot;MyApp&quot;&gt;
+    &lt;div class=&quot;container&quot; ng-controller=&quot;MyController&quot;&gt;
+        &lt;div class=&quot;my-info&quot;&gt;我的名字是：
+            &lt;span ng-bind=&quot;name&quot;&gt;&lt;/span&gt;
+            &lt;!-- 使用&quot;ng-bind&quot;防止网络状态不佳时出现没有被赋值表达式   --&gt;
+            &lt;br/&gt;我的年龄是：&lt;span ng-bind=&quot;age&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;!-- 使用属性声明指令 --&gt;
+        &lt;div class=&quot;my-directive&quot; my-directive&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>CSS代码：</p>
+<pre><code>div{
+    padding: 6px;
+}
+div.container {
+    border: 1px solid black;
+}
+div.my-info {
+    border: 1px solid blue;
+}
+div.my-directive{
+    border: 1px solid green;
+}
+</code></pre><p>下面我们来详细解释一下上面的代码：</p>
+<blockquote>
+<p>因为我们将scope的属性设置为false所以，我们创建的指令继承了父作用域的一切属性和方法，这也使得在指令的模板中我们可以使用这些属性和方法。</p>
+<p>注意：此时我们在输入框里改变名字，会发现上面的两个名字都发生了变化，你肯定会说，这肯定是这样啊，数据绑定嘛，好，我们接着往下走。</p>
+</blockquote>
+<h3 id="scope-true"><a href="#scope-true" class="headerlink" title="scope = true"></a>scope = true</h3><p>当把scope属性设置为true时，这表明我们创建的指令要创建一个新的作用域，这个作用域继承自我们的父作用域。<br>等等，刚才我们不是说了，当把scope属性值设置为false时，不也是继承我们的父作用域吗？表急，我们接着往下看。</p>
+<p>修改上面的JS代码，将指令中的：</p>
+<p>scope:false修改为scope:true</p>
+<p>然后我们再试着在我们的input输入框中写一些字符串，会发现，指令中的那个name发生了变化，但是指令外的那个name却没有发生变化，这说明了一个问题。</p>
+<blockquote>
+<ol>
+<li>当我们将scope设置为true的时候，我们就新创建了一个作用域，只不过这个作用域是继承了我们的父作用域；我觉得可以这样理解，我们新创建的作用域是一个新的作用域，只不过在初始化的时候，用了父作用域的属性和方法去填充我们这个新的作用域。它和父作用域不是同一个作用域。</li>
+<li>当我们将scope设置为false的时候,我们创建的指令和父作用域（其实是同一个作用域）共享同一个model模型，所以在指令中修改模型数据，它会反映到父作用域的模型中。</li>
+</ol>
+</blockquote>
+<h3 id="scope"><a href="#scope" class="headerlink" title="scope = {}"></a>scope = {}</h3><p>下面我们要进入一个好玩的部分，当我们将scope的属性设置为{}时，我们可以做更多的事情。</p>
+<p>AngularJS最强的大的地方之一就是它可以构建组建，无论放在哪里都是可以使用的；<br>这所以可以做到这些，不得不归功于指令的这个属性；当我们将scope设置为{}时，意味着我们创建的一个新的与父作用域隔离的新的作用域，这使我们在不知道外部环境的情况下，就可以正常工作，不依赖外部环境。</p>
+<p>当然首先我们还是要给出我们的例子，先看代码,我们修改了上述的JS代码和HTML代码 JS代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">"MyApp"</span>, [])</div><div class="line">    .controller(<span class="string">"MyController"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$scope</span>) </span>&#123;</div><div class="line">    $scope.name = <span class="string">"dreamapple"</span>;</div><div class="line">    $scope.age = <span class="number">20</span>;</div><div class="line">    $scope.changeAge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        $scope.age = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">    .directive(<span class="string">"myDirective"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> obj = &#123;</div><div class="line">        <span class="attr">restrict</span>: <span class="string">"AE"</span>,</div><div class="line">        <span class="attr">scope</span>: &#123;</div><div class="line">            <span class="attr">name</span>: <span class="string">'@myName'</span>,</div><div class="line">            <span class="attr">age</span>: <span class="string">'='</span>,</div><div class="line">            <span class="attr">changeAge</span>: <span class="string">'&amp;changeMyAge'</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">replace</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">template</span>: <span class="string">"&lt;div class='my-directive'&gt;"</span> +</div><div class="line">            <span class="string">"&lt;h3&gt;下面部分是我们创建的指令生成的&lt;/h3&gt;"</span> +</div><div class="line">            <span class="string">"我的名字是：&lt;span ng-bind='name'&gt;&lt;/span&gt;&lt;br/&gt;"</span> +</div><div class="line">            <span class="string">"我的年龄是：&lt;span ng-bind='age'&gt;&lt;/span&gt;&lt;br/&gt;"</span> +</div><div class="line">            <span class="string">"在这里修改名字：&lt;input type='text' ng-model='name'&gt;&lt;br/&gt;"</span> +</div><div class="line">            <span class="string">"&lt;button ng-click='changeAge()'&gt;修改年龄&lt;/button&gt;"</span> +</div><div class="line">            <span class="string">" &lt;/div&gt;"</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> obj;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>HTML代码:</p>
+<pre><code>&lt;div ng-app=&quot;MyApp&quot;&gt;
+    &lt;div class=&quot;container&quot; ng-controller=&quot;MyController&quot;&gt;
+        &lt;div class=&quot;my-info&quot;&gt;我的名字是：&lt;span ng-bind=&quot;name&quot;&gt;&lt;/span&gt;
+
+            &lt;br/&gt;我的年龄是：&lt;span ng-bind=&quot;age&quot;&gt;&lt;/span&gt;
+            &lt;br /&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;my-directive&quot; my-directive my-name=&quot;{{name}}&quot; age=&quot;age&quot;  change-my-age=&quot;changeAge()&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>我们使用了隔离的作用域，不代表我们不可以使用父作用域的属性和方法。</p>
+<ol>
+<li>我们可以通过向scope的{}中传入特殊的前缀标识符（即prefix），来进行数据的绑定。</li>
+<li>在创建了隔离的作用域，我们可以通过@,&amp;,=引用应用指令的元素的属性，如上面的代码那样，我们可以在<div class="my-directive" my-directive="" my-name="" age="age" change-my-age="changeAge()"></div>这个元素中，利用前缀标识符通过使用属性my-name,age,change-my-age来引用这些属性的值。</li>
+</ol>
+<p>下面我们来看看如何使用这些前缀标识符：    </p>
+<p>@<br>这是一个单项绑定的前缀标识符<br>使用方法：在元素中使用属性，好比这样    </p>
+<pre><code>&lt;div my-directive my-name=&quot;{{name}}&quot;&gt;&lt;/div&gt;  
+</code></pre><p>注意，属性的名字要用-将两个单词连接，因为是数据的单项绑定所以要通过使用</p>
+<pre><code>{{}}
+</code></pre><p>来绑定数据。</p>
+<p>=<br>这是一个双向数据绑定前缀标识符使用方法：在元素中使用属性，好比这样    </p>
+<pre><code>&lt;div my-directive age=&quot;age&quot;&gt;&lt;/div&gt;    
+</code></pre><p>注意，数据的双向绑定要通过=前缀标识符实现，所以不可以使用</p>
+<pre><code>{{}}
+</code></pre><p>&amp;<br>这是一个绑定函数方法的前缀标识符<br>使用方法：在元素中使用属性，好比这样</p>
+<pre><code>&lt;div my-directive change-my-age=&quot;changeAge()&quot;&gt;&lt;/div&gt;
+</code></pre><p>注意，属性的名字要用-将多个个单词连接。</p>
+<pre><code>注意：在新创建指令的作用域对象中，使用属性的名字进行绑定时，要使用驼峰命名标准，比如下面的代码。
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">scope: &#123;</div><div class="line">            <span class="comment">// `myName` 就是原来元素中的`my-name`属性</span></div><div class="line">            name: <span class="string">'@myName'</span>,</div><div class="line">            <span class="attr">age</span>: <span class="string">'='</span>,</div><div class="line">            <span class="comment">// `changeMyAge`就是原来元素中的`change-my-age`属性</span></div><div class="line">            changeAge: <span class="string">'&amp;changeMyAge'</span></div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>进一步说明，我们的指令是如何利用这些前缀标识符来寻找我们想要的属性或者函数的？</p>
+<ul>
+<li>@ 当指令编译到模板的name时，就会到scope中寻找是否含有name的键值对，如果存在，就像上面那样，看到@就知道这是一个单向的数据绑定，然后寻找原来的那个使用指令的元素上（或者是指令元素本身）含有这个值的属性即</li>
+</ul>
+<pre><code>my-name = {{name}}
+</code></pre><p>然后在父作用域查找</p>
+<pre><code>{{name}}
+</code></pre><p>的值，得到之后传递给模板中的name。</p>
+<ul>
+<li>=和&amp;与@差不多，只不过=进行的是双向的数据绑定，不论模板还是父作用域上的属性的值发生改变都会使另一个值发生改变，而&amp;是绑定函数而已。</li>
+</ul>
+<p>到这里我们关于AngularJS指令的作用域估计也理解的差不多了，那好，洗洗睡吧！</p>
+<blockquote>
+<p>下一篇：<a href="http://localhost:4000/2017/05/18/AngularJS1" target="_blank" rel="external">AngularJS之英雄联盟组件介绍</a>.</p>
+</blockquote>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/05/18/AngularJS1/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="small fish's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        1195802401@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto: 1195802501@qq.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">7</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">19</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://prettysheep.info/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/prettysheepsheep/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;小鱼的博客
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

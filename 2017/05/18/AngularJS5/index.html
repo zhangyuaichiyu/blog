@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            AngularJS之英雄联盟路由 | 
+        
+        小鱼的博客
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="small fish">
+    <meta name="description" content="null">
+    <meta name="keywords" content="小鱼,小鱼空间,小鱼博客站，小鱼博客，技术博客，前端技术，前端,AngularJS">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="小鱼的博客">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://prettysheep.info">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="AngularJS之英雄联盟路由 | 小鱼的博客">
+    <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="AngularJS"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-image: url(/img/bg.png);
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加-Angular-组件路由，并且学习在视图之间导航"><span class="post-toc-number">1.</span> <span class="post-toc-text">添加 Angular 组件路由，并且学习在视图之间导航</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#行动计划"><span class="post-toc-number">2.</span> <span class="post-toc-text">行动计划</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#拆分-AppComponent"><span class="post-toc-number">3.</span> <span class="post-toc-text">拆分 AppComponent</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HeroesComponent"><span class="post-toc-number">4.</span> <span class="post-toc-text">HeroesComponent</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建-AppComponent"><span class="post-toc-number">5.</span> <span class="post-toc-text">创建 AppComponent</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加路由"><span class="post-toc-number">6.</span> <span class="post-toc-text">添加路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置路由"><span class="post-toc-number">7.</span> <span class="post-toc-text">配置路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#让路由器可用"><span class="post-toc-number">8.</span> <span class="post-toc-text">让路由器可用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#路由出口-Outlet"><span class="post-toc-number">9.</span> <span class="post-toc-text">路由出口(Outlet)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加一个仪表盘"><span class="post-toc-number">10.</span> <span class="post-toc-text">添加一个仪表盘</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加重定向路由"><span class="post-toc-number">11.</span> <span class="post-toc-text">添加重定向路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加导航到模版中"><span class="post-toc-number">12.</span> <span class="post-toc-text">添加导航到模版中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#把英雄添加到仪表盘"><span class="post-toc-number">13.</span> <span class="post-toc-text">把英雄添加到仪表盘</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#共享-HeroService"><span class="post-toc-number">14.</span> <span class="post-toc-text">共享 HeroService</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#获取英雄数据"><span class="post-toc-number">15.</span> <span class="post-toc-text">获取英雄数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#导航到英雄详情"><span class="post-toc-number">16.</span> <span class="post-toc-text">导航到英雄详情</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改HeroDetailComponent"><span class="post-toc-number">17.</span> <span class="post-toc-text">修改HeroDetailComponent</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加-HeroService-getHero"><span class="post-toc-number">18.</span> <span class="post-toc-text">添加 HeroService.getHero()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#选择一个仪表盘中的英雄"><span class="post-toc-number">19.</span> <span class="post-toc-text">选择一个仪表盘中的英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重构路由为一个路由模块"><span class="post-toc-number">20.</span> <span class="post-toc-text">重构路由为一个路由模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改-AppModule"><span class="post-toc-number">21.</span> <span class="post-toc-text">修改 AppModule</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在-HeroesComponent-中选择一位英雄"><span class="post-toc-number">22.</span> <span class="post-toc-text">在 HeroesComponent 中选择一位英雄</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#更新-HeroesComponent-类"><span class="post-toc-number">23.</span> <span class="post-toc-text">更新 HeroesComponent 类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#美化本应用"><span class="post-toc-number">24.</span> <span class="post-toc-text">美化本应用</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                AngularJS之英雄联盟路由
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>small fish</strong>
+        <span>5月 18, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACZUlEQVR42u3aQXLjMAwEQP//08kDdqUMABpWUs2Tq0zLbB4o1ICvrz89Xnh4eHh4eHh4eA/jveLxnwf98+3V/N6/NH+Fh4eHt8L74ai9nXPFu8Lfb9B8bXh4eHibvGRZ93OuAMlBfzU/XxseHh7eb+HlpPvjvro1eHh4eL+XVy3E81cLHh4e3vN51bgh+VU+/xFZCx4eHl7My5tM+59X+3t4eHh4Aa93WN8HB0m7q3pNoXnpCg8PD+8NvGqDKim488/V2CJaDx4eHt4KLw9J5y2uXtus0H7Dw8PDW+ElRXAerSaBbxJA5OvEw8PD2+T12k55O7+6fdUgAw8PD++zvEKTKbn8NAgj8o3Aw8PD2+dVl5jPmbe4kvj4QBiBh4eH1+JVj/U8kM3j4ElwjIeHh7fJy4/jZjuqeO0gKprfEePi4eHhFXlX4cKpS/+TaCNvpOHh4eHt8HoP6l1p7V26Km8WHh4e3govf1wequa/mlxHKGQteHh4eEd5CaYauSbfVgOIY+89PDw8vDEvjxLyln/ysknK+vw5eHh4eJu8PJg4GyL0Cu5RjIuHh4d3lJewk9dAXqDfvySqM/Hw8PD2efMG2GRTThX3eHh4eJu8SeO/F7nON65ZUuPh4eENeNWRX5mqFujVLcDDw8P7FO8Vj16jq9cwq5Lw8PDw9nnJ31eXMmme5WvAw8PD+yzv1NJzXjWMONYAw8PDw1vnTUrk6lWD8qUEPDw8vAfzerFFNc7Ii2k8PDy8fV4SRsyDjMnW4OHh4T2HN48AquVvr9SONh0PDw/vzby/N/Dw8PDw8PDw8B4wvgHAaO05j9avFQAAAABJRU5ErkJggg==">
+        </ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/AngularJS/">AngularJS</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=AngularJS之英雄联盟路由&url=http://prettysheep.info//2017/05/18/AngularJS5/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=AngularJS之英雄联盟路由&url=http://prettysheep.info//2017/05/18/AngularJS5/index.html&via=small fish" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://prettysheep.info//2017/05/18/AngularJS5/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://prettysheep.info//2017/05/18/AngularJS5/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h3 id="添加-Angular-组件路由，并且学习在视图之间导航"><a href="#添加-Angular-组件路由，并且学习在视图之间导航" class="headerlink" title="添加 Angular 组件路由，并且学习在视图之间导航"></a>添加 Angular 组件路由，并且学习在视图之间导航</h3><p>我们收到了《英雄指南》的一些新需求：</p>
+<ol>
+<li>添加一个仪表盘视图。</li>
+<li>在英雄列表和仪表盘视图之间导航。</li>
+<li>无论在哪个视图中点击一个英雄，都会导航到该英雄的详情页。</li>
+<li>在邮件中点击一个深链接，会直接打开一个特定英雄的详情视图。</li>
+</ol>
+<p>完成时，用户就能像这样在应用中导航：</p>
+<p><img src="http://oq6u0ixei.bkt.clouddn.com/17-5-19/515318-file_1495178472189_13496.png" alt=""></p>
+<p>我们将把 Angular 路由器加入应用中，以满足这些需求。 (译注：硬件领域中的路由器是用来帮你找到另一台网络设备的，而这里的路由器用于帮你找到一个组件)</p>
+<h3 id="行动计划"><a href="#行动计划" class="headerlink" title="行动计划"></a>行动计划</h3><p>下面是我们的计划：</p>
+<ol>
+<li>把AppComponent变成应用程序的“壳”，它只处理导航</li>
+<li>把现在由AppComponent关注的英雄们移到一个独立的HeroesComponent中</li>
+<li>添加路由</li>
+<li>创建一个新的DashboardComponent组件(仪表盘组件)</li>
+<li>把仪表盘加入导航结构中</li>
+</ol>
+<blockquote>
+<p>路由是导航的另一个名字。路由器就是从一个视图导航到另一个视图的机制。</p>
+</blockquote>
+<h3 id="拆分-AppComponent"><a href="#拆分-AppComponent" class="headerlink" title="拆分 AppComponent"></a>拆分 AppComponent</h3><p>现在的应用会加载AppComponent组件，并且立刻显示出英雄列表。</p>
+<p>我们修改后的应用将提供一个壳，它会选择仪表盘和英雄列表视图之一，然后默认显示它。</p>
+<p>AppComponent组件应该只处理导航。 我们来把英雄列表的显示职责，从AppComponent移到HeroesComponent组件中。</p>
+<h3 id="HeroesComponent"><a href="#HeroesComponent" class="headerlink" title="HeroesComponent"></a>HeroesComponent</h3><p>AppComponent的职责已经被移交给HeroesComponent了。 与其把AppComponent中所有的东西都搬过去，不如索性把它改名为HeroesComponent，然后单独创建一个新的AppComponent壳。</p>
+<p>步骤如下：</p>
+<ul>
+<li>把app.component.ts文件改名为heroes.component.ts。</li>
+<li>把AppComponent类改名为HeroesComponent（注意，只在这一个文件中改名）。</li>
+<li><p>把my-app选择器改名为my-heroes。</p>
+<p>  @Component({</p>
+<pre><code>selector: &apos;my-heroes&apos;,
+</code></pre><p>  })<br>  export class HeroesComponent implements OnInit {<br>  }</p>
+</li>
+</ul>
+<h3 id="创建-AppComponent"><a href="#创建-AppComponent" class="headerlink" title="创建 AppComponent"></a>创建 AppComponent</h3><p>新的AppComponent将成为应用的“壳”。 它将在顶部放一些导航链接，并且把我们要导航到的页面放在下面的显示区中。</p>
+<p>执行下列步骤:</p>
+<ul>
+<li>添加支持性的import语句   </li>
+<li>创建一个名叫src/app/app.component.ts的新文件</li>
+<li>定义一个导出的AppComponent类</li>
+<li>在类的上方添加@Component元数据装饰器，装饰器带有my-app选择器。</li>
+<li>将下面的项目从HeroesComponent移到AppComponent：</li>
+<li>title类属性</li>
+<li>@Component模板中的h1标签，它包含了对title属性的绑定。</li>
+<li>在模板的标题下面添加<my-heroes>标签，以便我们仍能看到英雄列表。</my-heroes></li>
+<li>添加HeroesComponent组件到根模块的declarations数组中，以便 Angular 能认识<my-heroes>标签。</my-heroes></li>
+<li>添加HeroService到AppModule的providers数组中，因为我们的每一个视图都需要它。</li>
+<li>从HerosComponent的providers数组中移除HeroService，因为它被提到模块了。</li>
+<li>为AppComponent添加一些import语句。</li>
+</ul>
+<blockquote>
+<p>回到HeroesComponent，并从providers数组中移除HeroService。 把它从HeroesComponent提升到根NgModule中。 我们不希望在应用的两个不同层次上存在它的两个副本。</p>
+</blockquote>
+<h3 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h3><p>我们希望在用户点击按钮之后才显示英雄列表，而不是自动显示。 换句话说，我们希望用户能“导航”到英雄列表。</p>
+<p>我们要使用 Angular 路由器进行导航。</p>
+<p>Angular 路由器是一个可选的外部 Angular NgModule，名叫RouterModule。 路由器包含了多种服务(RouterModule)、多种指令(RouterOutlet、RouterLink、RouterLinkActive)、 和一套配置(Routes)。我们将先配置路由。</p>
+<base href="">
+
+<p>打开index.html，确保它的<head>区顶部有一个<base href="...">元素（或动态生成该元素的脚本）。</head></p>
+<blockquote>
+<p>基地址（base href）是必须的</p>
+</blockquote>
+<h3 id="配置路由"><a href="#配置路由" class="headerlink" title="配置路由"></a>配置路由</h3><p>本应用还没有路由。我们来为应用的路由新建一个配置。</p>
+<p>路由告诉路由器，当用户点击链接或者把 URL 粘贴到浏览器地址栏时，应该显示哪个视图。</p>
+<p>我们的第一个路由是指向英雄列表组件的。<br>src/app/app.module.ts</p>
+<pre><code>import { RouterModule }   from &apos;@angular/router&apos;;
+RouterModule.forRoot([
+  {
+    path: &apos;heroes&apos;,
+    component: HeroesComponent
+  }
+])
+</code></pre><p>这个Routes是一个路由定义的数组。 此时，我们只有一个路由定义，但别急，后面还会添加更多。</p>
+<p>路由定义包括以下部分：</p>
+<ul>
+<li>Path: 路由器会用它来匹配浏览器地址栏中的地址，如heroes。</li>
+<li>Component: 导航到此路由时，路由器需要创建的组件（HeroesComponent）。</li>
+</ul>
+<h3 id="让路由器可用"><a href="#让路由器可用" class="headerlink" title="让路由器可用"></a>让路由器可用</h3><p>导入RouterModule并添加到AppModule的imports数组中。<br>src/app/app.module.ts (app routing)</p>
+<pre><code>import { NgModule }       from &apos;@angular/core&apos;;
+import { BrowserModule }  from &apos;@angular/platform-browser&apos;;
+import { FormsModule }    from &apos;@angular/forms&apos;;
+import { RouterModule }   from &apos;@angular/router&apos;;
+import { AppComponent }        from &apos;./app.component&apos;;
+import { HeroDetailComponent } from &apos;./hero-detail.component&apos;;
+import { HeroesComponent }     from &apos;./heroes.component&apos;;
+import { HeroService }         from &apos;./hero.service&apos;;
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot([
+      {
+        path: &apos;heroes&apos;,
+        component: HeroesComponent
+      }
+    ])
+  ],
+  declarations: [
+    AppComponent,
+    HeroDetailComponent,
+    HeroesComponent
+  ],
+  providers: [
+    HeroService
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule {
+}
+</code></pre><blockquote>
+<p>这里使用了forRoot()方法，因为我们是在应用根部提供配置好的路由器。 forRoot()方法提供了路由需要的路由服务提供商和指令，并基于当前浏览器 URL 初始化导航。</p>
+</blockquote>
+<h3 id="路由出口-Outlet"><a href="#路由出口-Outlet" class="headerlink" title="路由出口(Outlet)"></a>路由出口(Outlet)</h3><p>如果我们把路径/heroes粘贴到浏览器的地址栏，路由器会匹配到’Heroes’路由，并显示HeroesComponent组件。 我们必须告诉路由器它位置，所以我们把<router-outlet>标签添加到模板的底部。 RouterOutlet是由RouterModule提供的指令之一。 当我们在应用中导航时，路由器就把激活的组件显示在<router-outlet>里面。<br>路由器链接</router-outlet></router-outlet></p>
+<p>我们当然不会真让用户往地址栏中粘贴路由的 URL， 而应该在模板中的什么地方添加一个锚标签。点击时，就会导航到HeroesComponent组件。</p>
+<p>修改过的模板是这样的：<br>src/app/app.component.ts</p>
+<pre><code>template: `
+   &lt;h1&gt;{{title}}&lt;/h1&gt;
+   &lt;a routerLink=&quot;/heroes&quot;&gt;Heroes&lt;/a&gt;
+   &lt;router-outlet&gt;&lt;/router-outlet&gt;
+</code></pre><p>注意，锚标签中的[routerLink]绑定。 我们把RouterLink指令（ROUTER_DIRECTIVES中的另一个指令）绑定到一个字符串。 它将告诉路由器，当用户点击这个链接时，应该导航到哪里。</p>
+<p>由于这个链接不是动态的，我们只要用一次性绑定的方式绑定到路由的路径 (path) 就行了。 回来看路由配置表，我们清楚的看到，这个路径 —— ‘/heroes’就是指向HeroesComponent的那个路由的路径。</p>
+<blockquote>
+<p>浏览器的地址栏显示的是/。而到HeroesComponent的路由中的路径是/heroes，不是/。 我们没有任何路由能匹配当前的路径/，所以，自然没啥可显示的。 接下来，我们就修复这个问题。</p>
+</blockquote>
+<p>我们点击“Heroes（英雄列表）”导航链接，浏览器地址栏更新为/heroes，并且看到了英雄列表。我们终于导航过去了！</p>
+<p>现在，AppComponent是这样的:</p>
+<pre><code>import { Component } from &apos;@angular/core&apos;;
+@Component({
+  selector: &apos;my-app&apos;,
+  template: `
+     &lt;h1&gt;{{title}}&lt;/h1&gt;
+     &lt;a routerLink=&quot;/heroes&quot;&gt;Heroes&lt;/a&gt;
+     &lt;router-outlet&gt;&lt;/router-outlet&gt;
+   `
+})
+export class AppComponent {
+  title = &apos;Tour of Heroes&apos;;
+}
+</code></pre><p>AppComponent现在加上了路由器，并能显示路由到的视图了。 因此，为了把它从其它种类的组件中区分出来，我们称这类组件为路由器组件。</p>
+<h3 id="添加一个仪表盘"><a href="#添加一个仪表盘" class="headerlink" title="添加一个仪表盘"></a>添加一个仪表盘</h3><p>当我们有多个视图的时候，路由才有意义。所以我们需要另一个视图。先创建一个DashboardComponent的占位符，让用户可以导航到它或从它导航出来。</p>
+<pre><code>import { Component } from &apos;@angular/core&apos;;
+@Component({
+  selector: &apos;my-dashboard&apos;,
+  template: &apos;&lt;h3&gt;My Dashboard&lt;/h3&gt;&apos;
+})
+export class DashboardComponent { }
+</code></pre><p>我们先不实现它，稍后，我们再回来，给这个组件一些实际用途。<br>配置仪表盘路由</p>
+<p>要让app.module.ts能导航到仪表盘，就要先导入仪表盘组件，然后把下列路由定义添加到Routes数组中。</p>
+<pre><code>{
+  path: &apos;dashboard&apos;,
+  component: DashboardComponent
+},
+</code></pre><p>然后还得把DashboardComponent添加到AppModule的declarations数组中。</p>
+<pre><code>declarations: [
+  AppComponent,
+  DashboardComponent,
+  HeroDetailComponent,
+  HeroesComponent
+],
+</code></pre><h3 id="添加重定向路由"><a href="#添加重定向路由" class="headerlink" title="添加重定向路由"></a>添加重定向路由</h3><p>浏览器启动时地址栏中的地址是/。 当应用启动时，它应该显示仪表盘，并且在浏览器的地址栏显示URL：/dashboard</p>
+<p>我们可以使用重定向路由来实现它。把下面的内容添加到路由定义数组中：</p>
+<pre><code>{
+  path: &apos;&apos;,
+  redirectTo: &apos;/dashboard&apos;,
+  pathMatch: &apos;full&apos;
+},
+</code></pre><h3 id="添加导航到模版中"><a href="#添加导航到模版中" class="headerlink" title="添加导航到模版中"></a>添加导航到模版中</h3><p>在模板上添加一个到仪表盘的导航链接，就放在Heroes（英雄列表）链接的上方。</p>
+<pre><code>template: `
+&lt;h1&gt;{{title}}&lt;/h1&gt;
+&lt;nav&gt;
+ &lt;a routerLink=&quot;/dashboard&quot;&gt;Dashboard&lt;/a&gt;
+ &lt;a routerLink=&quot;/heroes&quot;&gt;Heroes&lt;/a&gt;
+&lt;/nav&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+</code></pre><blockquote>
+<p>我们在<nav>标签中放了两个链接。 它们现在还没有作用，但稍后，当我们对这些链接添加样式时，会显得比较方便。</nav></p>
+</blockquote>
+<h3 id="把英雄添加到仪表盘"><a href="#把英雄添加到仪表盘" class="headerlink" title="把英雄添加到仪表盘"></a>把英雄添加到仪表盘</h3><p>我们想让仪表盘更有趣，比如：让用户一眼就能看到四个顶级英雄。</p>
+<p>把元数据中的template属性替换为templateUrl属性，它将指向一个新的模板文件。</p>
+<pre><code>@Component({
+  selector: &apos;my-dashboard&apos;,
+  templateUrl: &apos;./dashboard.component.html&apos;,
+})
+</code></pre><p>使用下列内容创建文件：<br>src/app/dashboard.component.html</p>
+<pre><code>&lt;h3&gt;Top Heroes&lt;/h3&gt;
+&lt;div class=&quot;grid grid-pad&quot;&gt;
+  &lt;div * ngFor=&quot;let hero of heroes&quot; class=&quot;col-1-4&quot;&gt;
+    &lt;div class=&quot;module hero&quot;&gt;
+      &lt;h4&gt;{{hero.name}}&lt;/h4&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>我们再次使用*ngFor来在英雄列表上迭代，并显示它们的名字。 还添加了一个额外的<div>元素，来帮助稍后的美化工作。</div></p>
+<h3 id="共享-HeroService"><a href="#共享-HeroService" class="headerlink" title="共享 HeroService"></a>共享 HeroService</h3><p>要想管理该组件的heroes数组，我们可以复用HeroService。</p>
+<p>在前面的章节中，我们从HeroesComponent的providers数组中移除了HeroService服务， 并把它添加到AppModule的providers数组中。 这个改动创建了一个HeroService的单例对象，应用中的所有组件都可以使用它。 Angular 会把HeroService注入到DashboardComponent，我们就能在DashboardComponent中使用它了。</p>
+<h3 id="获取英雄数据"><a href="#获取英雄数据" class="headerlink" title="获取英雄数据"></a>获取英雄数据</h3><p>打开dashboard.component.ts文件，并添加下列import语句。</p>
+<pre><code>import { Component, OnInit } from &apos;@angular/core&apos;;
+import { Hero } from &apos;./hero&apos;;
+import { HeroService } from &apos;./hero.service&apos;;
+</code></pre><p>我们需要实现OnInit接口，因为我们将在ngOnInit方法中初始化英雄数组 —— 就像上次一样。 我们需要导入Hero类和HeroService类来引用它们的数据类型。</p>
+<p>我们现在就实现DashboardComponent类，像这样：</p>
+<pre><code>export class DashboardComponent implements OnInit {
+  heroes: Hero[] = [];
+  constructor(private heroService: HeroService) { }
+  ngOnInit(): void {
+    this.heroService.getHeroes()
+      .then(heroes =&gt; this.heroes = heroes.slice(1, 5));
+  }
+}
+</code></pre><p>我们在之前的HeroesComponent中也看到过类似的逻辑：</p>
+<ul>
+<li>创建一个heroes数组属性。</li>
+<li>在构造函数中注入HeroService，并且把它保存在一个私有的heroService字段中。</li>
+<li>在 Angular 的ngOnInit生命周期钩子里面调用服务来获得英雄数据。</li>
+</ul>
+<p>在仪表盘中我们用Array.slice方法提取了四个英雄（第2、3、4、5个）。</p>
+<p>刷新浏览器，在这个新的仪表盘中就看到了四个英雄。</p>
+<h3 id="导航到英雄详情"><a href="#导航到英雄详情" class="headerlink" title="导航到英雄详情"></a>导航到英雄详情</h3><p>虽然我们在HeroesComponent组件的底部显示了所选英雄的详情， 但用户还没法导航到HeroDetailComponent组件。我们可以用下列方式导航到HeroDetailComponent：</p>
+<ul>
+<li>从Dashboard（仪表盘）导航到一个选定的英雄。</li>
+<li>从Heroes（英雄列表）导航到一个选定的英雄。</li>
+<li>把一个指向该英雄的“深链接” URL 粘贴到浏览器的地址栏。</li>
+</ul>
+<p>路由到一个英雄详情</p>
+<p>我们将在app.module.ts中添加一个到HeroDetailComponent的路由，也就是配置其它路由的地方。</p>
+<p>这个新路由的不寻常之处在于，我们必须告诉HeroDetailComponent该显示哪个英雄。 之前，我们不需要告诉HeroesComponent组件和DashboardComponent组件任何东西。</p>
+<p>现在，父组件HeroesComponent通过数据绑定来把一个英雄对象设置为组件的hero属性。就像这样：</p>
+<pre><code>&lt;hero-detail [hero]=&quot;selectedHero&quot;&gt;&lt;/hero-detail&gt;
+</code></pre><p>显然，在我们的任何一个路由场景中它都无法工作。 最后一种场景肯定不行，我们无法将一个完整的 hero 对象嵌入到 URL 中！不过我们本来也不想这样。<br>参数化路由</p>
+<p>我们可以把英雄的id添加到 URL 中。当导航到一个id为 11 的英雄时，我们期望的 URL 是这样的：</p>
+<pre><code>/detail/11
+</code></pre><p>URL中的/detail/部分是固定不变的，但结尾的数字id部分会随着英雄的不同而变化。 我们要把路由中可变的那部分表示成一个参数 (parameter) 或令牌 (token) ，代表英雄的id。<br>配置带参数的路由</p>
+<p>我们将使用下列路由定义。</p>
+<pre><code>{
+  path: &apos;detail/:id&apos;,
+  component: HeroDetailComponent
+},
+</code></pre><p>路径中的冒号 (:) 表示:id是一个占位符，当导航到这个HeroDetailComponent组件时，它将被填入一个特定英雄的id。</p>
+<blockquote>
+<p>别忘了在创建这个路由前导入英雄详情组件。</p>
+</blockquote>
+<p>我们已经完成了本应用的路由的配置。</p>
+<p>我们没有往模板中添加一个’英雄详情’，这是因为用户不会直接点击导航栏中的链接去查看一个特定的英雄。 它们只会通过在英雄列表或者仪表盘中点击来显示一个英雄。</p>
+<p>要想支持“点击英雄”，就得先对HeroDetailComponent进行修改，好让我们能导航到它。</p>
+<h3 id="修改HeroDetailComponent"><a href="#修改HeroDetailComponent" class="headerlink" title="修改HeroDetailComponent"></a>修改HeroDetailComponent</h3><p>在重写HeroDetailComponent之前，我们先看看它现在的样子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component, Input &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Hero &#125; <span class="keyword">from</span> <span class="string">'./hero'</span>;</div><div class="line">@Component(&#123;</div><div class="line">  <span class="attr">selector</span>: <span class="string">'hero-detail'</span>,</div><div class="line">  <span class="attr">template</span>: <span class="string">`</span></div><div class="line">    &lt;div *ngIf="hero"&gt;</div><div class="line">      &lt;h2&gt;&#123;&#123;hero.name&#125;&#125; details!&lt;/h2&gt;</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;label&gt;id: &lt;/label&gt;&#123;&#123;hero.id&#125;&#125;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;label&gt;name: &lt;/label&gt;</div><div class="line">        &lt;input [(ngModel)]="hero.name" placeholder="name"/&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  `</div><div class="line">&#125;)</div><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">HeroDetailComponent</span> </span>&#123;</div><div class="line">  @Input() hero: Hero;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>模板不用修改，我们会用原来的方式显示英雄。导致这次大修的原因是如何获得这个英雄的数据。</p>
+<p>我们不会再从父组件的属性绑定中接收英雄数据。 新的HeroDetailComponent应该从ActivatedRoute服务的可观察对象params中取得id参数， 并通过HeroService服务获取具有这个指定id的英雄数据。</p>
+<p>先添加下列导入语句：</p>
+<pre><code>import { Component, Input, OnInit } from &apos;@angular/core&apos;;
+import { ActivatedRoute, Params }   from &apos;@angular/router&apos;;
+import { Location }                 from &apos;@angular/common&apos;;
+import { HeroService } from &apos;./hero.service&apos;;
+</code></pre><p>然后注入ActivatedRoute和HeroService服务到构造函数中，将它们的值保存到私有变量中：</p>
+<pre><code>constructor(
+  private heroService: HeroService,
+  private route: ActivatedRoute,
+  private location: Location
+) {}
+
+
+import &apos;rxjs/add/operator/switchMap&apos;;
+</code></pre><p>我们告诉这个类，我们要实现OnInit接口。</p>
+<pre><code>export class HeroDetailComponent implements OnInit {
+</code></pre><p>在ngOnInit()生命周期钩子中，我们从ActivatedRoute服务的可观察对象params中提取id参数， 并且使用HeroService来获取具有这个id的英雄数据。。</p>
+<pre><code>ngOnInit(): void {
+  this.route.params
+    .switchMap((params: Params) =&gt; this.heroService.getHero(+params[&apos;id&apos;]))
+    .subscribe(hero =&gt; this.hero = hero);
+}
+</code></pre><p>注意switchMap运算符如何将可观察的路由参数中的 id 映射到一个新的Observable， 即HeroService.getHero()方法的结果。</p>
+<p>如果用户在 getHero 请求执行的过程中再次导航这个组件，switchMap 再次调用HeroService.getHero()之前， 会取消之前的请求。</p>
+<p>英雄的id是数字，而路由参数的值总是字符串。 所以我们需要通过 JavaScript 的 (+) 操作符把路由参数的值转成数字。</p>
+<h3 id="添加-HeroService-getHero"><a href="#添加-HeroService-getHero" class="headerlink" title="添加 HeroService.getHero()"></a>添加 HeroService.getHero()</h3><p>在前面的代码片段中HeroService没有getHero()方法。要解决这个问题，请打开HeroService并添加一个getHero()方法，它会根据id从getHeroes()中过滤英雄列表。</p>
+<pre><code>getHero(id: number): Promise&lt;Hero&gt; {
+  return this.getHeroes()
+             .then(heroes =&gt; heroes.find(hero =&gt; hero.id === id));
+}
+</code></pre><p>回到原路</p>
+<p>用户有多种方式导航到HeroDetailComponent。</p>
+<p>要导航到别处，用户可以点击AppComponent中的两个链接之一，也可以点击浏览器的后退按钮。 我们来添加第三个选项：一个goBack()方法，它使用之前注入的Location服务， 利用浏览器的历史堆栈，导航到上一步。</p>
+<pre><code>goBack(): void {
+  this.location.back();
+}
+</code></pre><blockquote>
+<p>回退太多步会跑出我们的应用。 在真实的应用中，我们需要使用CanDeactivate守卫对此进行防范。</p>
+</blockquote>
+<p>然后，我们通过一个事件绑定把此方法绑定到模板底部的 Back（后退）按钮上。</p>
+<pre><code>&lt;button (click)=&quot;goBack()&quot;&gt;Back&lt;/button&gt;
+</code></pre><p>修改模板，添加这个按钮以提醒我们还要做更多的改进， 并把模板移到独立的hero-detail.component.html文件中去。</p>
+<pre><code>&lt;div * ngIf=&quot;hero&quot;&gt;
+  &lt;h2&gt;{{hero.name}} details!&lt;/h2&gt;
+  &lt;div&gt;
+    &lt;label&gt;id: &lt;/label&gt;{{hero.id}}&lt;/div&gt;
+  &lt;div&gt;
+    &lt;label&gt;name: &lt;/label&gt;
+    &lt;input [(ngModel)]=&quot;hero.name&quot; placeholder=&quot;name&quot; /&gt;
+  &lt;/div&gt;
+  &lt;button (click)=&quot;goBack()&quot;&gt;Back&lt;/button&gt;
+&lt;/div&gt;
+</code></pre><p>然后修改组件元数据的templateUrl属性，让它指向我们刚刚创建的模板文件。</p>
+<pre><code>@Component({
+  selector: &apos;hero-detail&apos;,
+  templateUrl: &apos;./hero-detail.component.html&apos;,
+})
+</code></pre><h3 id="选择一个仪表盘中的英雄"><a href="#选择一个仪表盘中的英雄" class="headerlink" title="选择一个仪表盘中的英雄"></a>选择一个仪表盘中的英雄</h3><p>当用户从仪表盘中选择了一位英雄时，本应用要导航到HeroDetailComponent以查看和编辑所选的英雄。</p>
+<p>虽然仪表盘英雄被显示为像按钮一样的方块，但是它们的行为应该像锚标签一样。 当鼠标移动到一个英雄方块上时，目标 URL 应该显示在浏览器的状态条上，用户应该能拷贝链接或者在新的浏览器标签页中打开英雄详情视图。</p>
+<p>要达到这个效果，再次打开dashboard.component.html，将用来迭代的<div *="" ngfor...="">替换为<a>，就像这样：</a></div></p>
+<pre><code>&lt;a * ngFor=&quot;let hero of heroes&quot;  [routerLink]=&quot;[&apos;/detail&apos;, hero.id]&quot;  class=&quot;col-1-4&quot;&gt;
+</code></pre><p>注意[routerLink]绑定。正如本章的部分所说， AppComponent模板中的顶级导航有一些路由器链接被设置固定的路径，例如“/dashboard”和“/heroes”。</p>
+<p>这次，我们绑定了一个包含链接参数数组的表达式。 该数组有两个元素，目标路由和一个用来设置当前英雄的 id 值的路由参数。</p>
+<p>这两个数组项与之前在app.module.ts添加的参数化的英雄详情路由定义中的 path 和 :id 对应。</p>
+<pre><code>{
+  path: &apos;detail/:id&apos;,
+  component: HeroDetailComponent
+},
+</code></pre><h3 id="重构路由为一个路由模块"><a href="#重构路由为一个路由模块" class="headerlink" title="重构路由为一个路由模块"></a>重构路由为一个路由模块</h3><p>AppModule中有将近 20 行代码是用来配置四个路由的。 绝大多数应用有更多路由，并且它们还有守卫服务来保护不希望或未授权的导航。 （要了解守卫服务的更多知识，参见路由与导航页的路由守卫） 路由的配置可能迅速占领这个模块，并掩盖其主要目的，即为 Angular 编译器设置整个应用的关键配置。</p>
+<p>我们应该重构路由配置到它自己的类。 什么样的类呢？ 当前的RouterModule.forRoot()产生一个Angular ModuleWithProviders，所以这个路由类应该是一种模块类。 它应该是一个路由模块。要想了解更多，请参阅路由与导航一章的里程碑2：路由模块部分。</p>
+<p>按约定，路由模块的名字应该包含 “Routing”，并与导航到的组件所在的模块的名称看齐。</p>
+<p>在app.module.ts所在目录创建app-routing.module.ts文件。将下面从AppModule类提取出来的代码拷贝进去：</p>
+<pre><code>import { NgModule }             from &apos;@angular/core&apos;;
+import { RouterModule, Routes } from &apos;@angular/router&apos;;
+import { DashboardComponent }   from &apos;./dashboard.component&apos;;
+import { HeroesComponent }      from &apos;./heroes.component&apos;;
+import { HeroDetailComponent }  from &apos;./hero-detail.component&apos;;
+const routes: Routes = [
+  { path: &apos;&apos;, redirectTo: &apos;/dashboard&apos;, pathMatch: &apos;full&apos; },
+  { path: &apos;dashboard&apos;,  component: DashboardComponent },
+  { path: &apos;detail/:id&apos;, component: HeroDetailComponent },
+  { path: &apos;heroes&apos;,     component: HeroesComponent }
+];
+@NgModule({
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule {}
+</code></pre><p>典型路由模块需要注意的有：</p>
+<ul>
+<li>将路由抽出到一个变量中。如果你将来要导出这个模块，这种 “路由模块” 的模式也会更加明确。</li>
+<li>添加RouterModule.forRoot(routes)到imports。</li>
+<li>把RouterModule添加到路由模块的exports中，以便关联模块（比如AppModule）中的组件可以访问路由模块中的声明，比如RouterLink 和 RouterOutlet。</li>
+<li>无declarations！声明是关联模块的任务。</li>
+<li>如果有守卫服务，把它们添加到本模块的providers中（本例子中没有守卫服务）。</li>
+</ul>
+<h3 id="修改-AppModule"><a href="#修改-AppModule" class="headerlink" title="修改 AppModule"></a>修改 AppModule</h3><p>删除AppModule中的路由配置，并导入AppRoutingModule （使用 ES import语句导入，并将它添加到NgModule.imports列表）。</p>
+<p>下面是修改后的AppModule，与重构前的对比：</p>
+<p>src/app/app.module.ts(after)</p>
+<pre><code>import { NgModule }       from &apos;@angular/core&apos;;
+import { BrowserModule }  from &apos;@angular/platform-browser&apos;;
+import { FormsModule }    from &apos;@angular/forms&apos;;
+import { AppComponent }         from &apos;./app.component&apos;;
+import { DashboardComponent }   from &apos;./dashboard.component&apos;;
+import { HeroDetailComponent }  from &apos;./hero-detail.component&apos;;
+import { HeroesComponent }      from &apos;./heroes.component&apos;;
+import { HeroService }          from &apos;./hero.service&apos;;
+import { AppRoutingModule }     from &apos;./app-routing.module&apos;;
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule
+  ],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    HeroDetailComponent,
+    HeroesComponent
+  ],
+  providers: [ HeroService ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+</code></pre><p>src/app/app.module.ts(before)</p>
+<pre><code>import { NgModule }       from &apos;@angular/core&apos;;
+import { BrowserModule }  from &apos;@angular/platform-browser&apos;;
+import { FormsModule }    from &apos;@angular/forms&apos;;
+import { AppComponent }         from &apos;./app.component&apos;;
+import { DashboardComponent }   from &apos;./dashboard.component&apos;;
+import { HeroDetailComponent }  from &apos;./hero-detail.component&apos;;
+import { HeroesComponent }      from &apos;./heroes.component&apos;;
+import { HeroService }          from &apos;./hero.service&apos;;
+import { AppRoutingModule }     from &apos;./app-routing.module&apos;;
+@NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule
+  ],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    HeroDetailComponent,
+    HeroesComponent
+  ],
+  providers: [ HeroService ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+</code></pre><h3 id="在-HeroesComponent-中选择一位英雄"><a href="#在-HeroesComponent-中选择一位英雄" class="headerlink" title="在 HeroesComponent 中选择一位英雄"></a>在 HeroesComponent 中选择一位英雄</h3><p>在HeroesComponent中，当前模板展示了一个主从风格的界面：上方是英雄列表，底下是所选英雄的详情。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">template: `</div><div class="line">  &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</div><div class="line">  &lt;h2&gt;My Heroes&lt;/h2&gt;</div><div class="line">  &lt;ul class=&quot;heroes&quot;&gt;</div><div class="line">    &lt;li *ngFor=&quot;let hero of heroes&quot;</div><div class="line">      [class.selected]=&quot;hero === selectedHero&quot;</div><div class="line">      (click)=&quot;onSelect(hero)&quot;&gt;</div><div class="line">      &lt;span class=&quot;badge&quot;&gt;&#123;&#123;hero.id&#125;&#125;&lt;/span&gt; &#123;&#123;hero.name&#125;&#125;</div><div class="line">    &lt;/li&gt;</div><div class="line">  &lt;/ul&gt;</div><div class="line">  &lt;hero-detail [hero]=&quot;selectedHero&quot;&gt;&lt;/hero-detail&gt;</div><div class="line">`,</div></pre></td></tr></table></figure>
+<p>删除顶部的h1。</p>
+<p>删除模板最后带有hero-detail标签的那一行。</p>
+<p>我们不在这里展示完整的HeroDetailComponent了。 而是在独立的路由和页面中显示英雄详情，就像我们在仪表盘中所做的那样。</p>
+<p>但是，当用户从列表中选择一个英雄时，他们不会在导航到详情页， 而是在当前页显示一个Mini版详情视图，当用户点击一个按钮时，才导航到完整的详情页面。<br>添加 mini 版英雄详情</p>
+<p>在模板底部原来放hero-detail的地方添加下列 HTML 片段：</p>
+<pre><code>&lt;div * ngIf=&quot;selectedHero&quot;&gt;
+  &lt;h2&gt;
+    {{selectedHero.name | uppercase}} is my hero
+  &lt;/h2&gt;
+  &lt;button (click)=&quot;gotoDetail()&quot;&gt;View Details&lt;/button&gt;
+&lt;/div&gt;
+</code></pre><p>点击一个英雄，用户将会在英雄列表的下方看到这些：</p>
+<p><img src="http://oq6u0ixei.bkt.clouddn.com/QQ20170519-0@2x.png" alt=""></p>
+<p>使用uppercase管道格式化</p>
+<p>注意，英雄的名字全被显示成大写字母。那是uppercase管道的效果，借助它，我们能干预插值表达式绑定的过程。可以管道操作符 ( | ) 后面看到它。</p>
+<pre><code>{{selectedHero.name | uppercase}} is my hero
+</code></pre><p>管道擅长做下列工作：格式化字符串、金额、日期和其它显示数据。 Angular 自带了一些管道，我们也可以写自己的管道。</p>
+<p>把内容移出组件文件</p>
+<p>当用户点击查看详情按钮时，要让它能导航到HeroDetailComponent，我们还需要修改它。</p>
+<p>这个组件文件太大了。要想在 HTML 和 CSS 的噪音中看清组件的工作逻辑太难了。</p>
+<p>在做更多修改之前，我们先把模板和样式移到它们自己的文件中去：</p>
+<p>首先，从heroes.component.ts中把模板内容移到新的heroes.component.html文件中，但不要把反引号也拷贝过去。就像heroes.component.ts一样，我们很快就能做完。接着，把样式的内容移到新的heroes.component.css文件中。</p>
+<p>这两个新文件是这样的：</p>
+<pre><code>&lt;h2&gt;My Heroes&lt;/h2&gt;
+&lt;ul class=&quot;heroes&quot;&gt;
+&lt;li * ngFor=&quot;let hero of heroes&quot;
+[class.selected]=&quot;hero === selectedHero&quot;
+(click)=&quot;onSelect(hero)&quot;&gt;
+&lt;span class=&quot;badge&quot;&gt;{{hero.id}}&lt;/span&gt; {{hero.name}}
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div * ngIf=&quot;selectedHero&quot;&gt;
+&lt;h2&gt;
+{{selectedHero.name | uppercase}} is my hero
+&lt;/h2&gt;
+&lt;button (click)=&quot;gotoDetail()&quot;&gt;View Details&lt;/button&gt;
+&lt;/div&gt;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">.selected &#123;</div><div class="line">  background-color: #CFD8DC !important;</div><div class="line">  color: white;</div><div class="line">&#125;</div><div class="line">.heroes &#123;</div><div class="line">  margin: 0 0 2em 0;</div><div class="line">  list-style-type: none;</div><div class="line">  padding: 0;</div><div class="line">  width: 15em;</div><div class="line">&#125;</div><div class="line">.heroes li &#123;</div><div class="line">  cursor: pointer;</div><div class="line">  position: relative;</div><div class="line">  left: 0;</div><div class="line">  background-color: #EEE;</div><div class="line">  margin: .5em;</div><div class="line">  padding: .3em 0;</div><div class="line">  height: 1.6em;</div><div class="line">  border-radius: 4px;</div><div class="line">&#125;</div><div class="line">.heroes li:hover &#123;</div><div class="line">  color: #607D8B;</div><div class="line">  background-color: #DDD;</div><div class="line">  left: .1em;</div><div class="line">&#125;</div><div class="line">.heroes li.selected:hover &#123;</div><div class="line">  background-color: #BBD8DC !important;</div><div class="line">  color: white;</div><div class="line">&#125;</div><div class="line">.heroes .text &#123;</div><div class="line">  position: relative;</div><div class="line">  top: -3px;</div><div class="line">&#125;</div><div class="line">.heroes .badge &#123;</div><div class="line">  display: inline-block;</div><div class="line">  font-size: small;</div><div class="line">  color: white;</div><div class="line">  padding: 0.8em 0.7em 0 0.7em;</div><div class="line">  background-color: #607D8B;</div><div class="line">  line-height: 1em;</div><div class="line">  position: relative;</div><div class="line">  left: -1px;</div><div class="line">  top: -4px;</div><div class="line">  height: 1.8em;</div><div class="line">  margin-right: .8em;</div><div class="line">  border-radius: 4px 0 0 4px;</div><div class="line">&#125;</div><div class="line">button &#123;</div><div class="line">  font-family: Arial;</div><div class="line">  background-color: #eee;</div><div class="line">  border: none;</div><div class="line">  padding: 5px 10px;</div><div class="line">  border-radius: 4px;</div><div class="line">  cursor: pointer;</div><div class="line">  cursor: hand;</div><div class="line">&#125;</div><div class="line">button:hover &#123;</div><div class="line">  background-color: #cfd8dc;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，回来编辑heroes.component.ts中的组件元数据，删除template 和 styles属性，代之以相应的templateUrl 和 styleUrls属性。让它们指向这些新文件。</p>
+<pre><code>@Component({
+  selector: &apos;my-heroes&apos;,
+  templateUrl: &apos;./heroes.component.html&apos;,
+  styleUrls: [ &apos;./heroes.component.css&apos; ]
+})
+</code></pre><blockquote>
+<p>styleUrls属性是一个由样式文件的文件名(包括路径)组成的数组。我们还可以列出来自多个不同位置的样式文件。</p>
+</blockquote>
+<h3 id="更新-HeroesComponent-类"><a href="#更新-HeroesComponent-类" class="headerlink" title="更新 HeroesComponent 类"></a>更新 HeroesComponent 类</h3><p>点击按钮时，HeroesComponent导航到HeroDetailComponent。 该按钮的点击事件绑定到了gotoDetail()方法，它使用命令式的导航，告诉路由器去哪儿。</p>
+<p>该方法需要对组件类做一些修改：</p>
+<ol>
+<li>从 Angular 路由器库导入Router</li>
+<li>在构造函数中注入Router（与HeroService一起）</li>
+<li><p>实现gotoDetail()，调用路由器的navigate()方法</p>
+<p> gotoDetail(): void {<br>   this.router.navigate([‘/detail’, this.selectedHero.id]);<br> }</p>
+</li>
+</ol>
+<p>注意，我们将一个包含两个元素的链接参数数组 — 路径和路由参数 — 传递到路由的navigate（）， 与之前在DashboardComponent中使用[routerLink]绑定一样。 修改完成的HeroesComponent类如下所示：</p>
+<p>src/app/heroes.component.ts (class)</p>
+<pre><code>export class HeroesComponent implements OnInit {
+  heroes: Hero[];
+  selectedHero: Hero;
+  constructor(
+    private router: Router,
+    private heroService: HeroService) { }
+  getHeroes(): void {
+    this.heroService.getHeroes().then(heroes =&gt; this.heroes = heroes);
+  }
+  ngOnInit(): void {
+    this.getHeroes();
+  }
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
+  gotoDetail(): void {
+    this.router.navigate([&apos;/detail&apos;, this.selectedHero.id]);
+  }
+}
+</code></pre><p>刷新浏览器，并开始点击。 我们能在应用中导航：从仪表盘到英雄详情再回来，从英雄列表到 mini 版英雄详情到英雄详情，再回到英雄列表。 我们可以在仪表盘和英雄列表之间跳来跳去。</p>
+<p>我们已经满足了在本章开头设定的所有导航需求。</p>
+<h3 id="美化本应用"><a href="#美化本应用" class="headerlink" title="美化本应用"></a>美化本应用</h3><p>应用在功能上已经正常了，但还需要美化。 仪表盘上的英雄应该显示在一行上的几个方块中。 我们拿到了大约60行CSS来完成这件事，包括一些简单的媒体查询代码以实现响应式设计。</p>
+<p>我们不能把这 60 来行 CSS 粘贴到组件元数据的styles中，否则它会淹没组件的工作逻辑。反之，我们应该在独立的*.css文件中编辑这些CSS。</p>
+<p>把dashboard.component.css文件添加到app目录下，并在组件元数据的styleUrls数组属性中引用它。就像这样：</p>
+<p>src/app/dashboard.component.ts (styleUrls)</p>
+<pre><code>styleUrls: [ &apos;./dashboard.component.css&apos; ]
+</code></pre><p>美化英雄详情</p>
+<p>我们还拿到了一些HeroDetailComponent特有的 CSS 风格。</p>
+<p>在app目录下添加hero-detail.component.css文件， 并且在styleUrls数组中引用它 —— 就像之前在DashboardComponent中做过的那样。 同时删除hero@Input装饰器属性和它的导入语句。</p>
+<p>上述组件的 CSS 文件内容如下：<br>src/app/hero-detail.component.css<br>label {<br>  display: inline-block;<br>  width: 3em;<br>  margin: .5em 0;<br>  color: #607D8B;<br>  font-weight: bold;<br>}<br>input {<br>  height: 2em;<br>  font-size: 1em;<br>  padding-left: .4em;<br>}<br>button {<br>  margin-top: 20px;<br>  font-family: Arial;<br>  background-color: #eee;<br>  border: none;<br>  padding: 5px 10px;<br>  border-radius: 4px;<br>  cursor: pointer; cursor: hand;<br>}<br>button:hover {<br>  background-color: #cfd8dc;<br>}<br>button:disabled {<br>  background-color: #eee;<br>  color: #ccc;<br>  cursor: auto;<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">src/app/dashboard.component.css</div><div class="line">```JavaScript</div><div class="line">[class*=&apos;col-&apos;] &#123;</div><div class="line">  float: left;</div><div class="line">  padding-right: 20px;</div><div class="line">  padding-bottom: 20px;</div><div class="line">&#125;</div><div class="line">[class*=&apos;col-&apos;]:last-of-type &#123;</div><div class="line">  padding-right: 0;</div><div class="line">&#125;</div><div class="line">a &#123;</div><div class="line">  text-decoration: none;</div><div class="line">&#125;</div><div class="line">*,* :after, * :before &#123;</div><div class="line">  -webkit-box-sizing: border-box;</div><div class="line">  -moz-box-sizing: border-box;</div><div class="line">  box-sizing: border-box;</div><div class="line">&#125;</div><div class="line">h3 &#123;</div><div class="line">  text-align: center; margin-bottom: 0;</div><div class="line">&#125;</div><div class="line">h4 &#123;</div><div class="line">  position: relative;</div><div class="line">&#125;</div><div class="line">.grid &#123;</div><div class="line">  margin: 0;</div><div class="line">&#125;</div><div class="line">.col-1-4 &#123;</div><div class="line">  width: 25%;</div><div class="line">&#125;</div><div class="line">.module &#123;</div><div class="line">  padding: 20px;</div><div class="line">  text-align: center;</div><div class="line">  color: #eee;</div><div class="line">  max-height: 120px;</div><div class="line">  min-width: 120px;</div><div class="line">  background-color: #607D8B;</div><div class="line">  border-radius: 2px;</div><div class="line">&#125;</div><div class="line">.module:hover &#123;</div><div class="line">  background-color: #EEE;</div><div class="line">  cursor: pointer;</div><div class="line">  color: #607d8b;</div><div class="line">&#125;</div><div class="line">.grid-pad &#123;</div><div class="line">  padding: 10px 0;</div><div class="line">&#125;</div><div class="line">.grid-pad &gt; [class*=&apos;col-&apos;]:last-of-type &#123;</div><div class="line">  padding-right: 20px;</div><div class="line">&#125;</div><div class="line">@media (max-width: 600px) &#123;</div><div class="line">  .module &#123;</div><div class="line">    font-size: 10px;</div><div class="line">    max-height: 75px; &#125;</div><div class="line">&#125;</div><div class="line">@media (max-width: 1024px) &#123;</div><div class="line">  .grid &#123;</div><div class="line">    margin: 0;</div><div class="line">  &#125;</div><div class="line">  .module &#123;</div><div class="line">    min-width: 60px;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>美化导航链接</p>
+<p>设计师还给了我们一些 CSS，用于让AppComponent中的导航链接看起来更像可被选择的按钮。 要让它们协同工作，我们得把那些链接包含在<nav>标签中。</nav></p>
+<p>在app目录下添加一个app.component.css文件，内容如下：</p>
+<p>src/app/app.component.css (navigation styles)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">  font-size: 1.2em;</div><div class="line">  color: #999;</div><div class="line">  margin-bottom: 0;</div><div class="line">&#125;</div><div class="line">h2 &#123;</div><div class="line">  font-size: 2em;</div><div class="line">  margin-top: 0;</div><div class="line">  padding-top: 0;</div><div class="line">&#125;</div><div class="line">nav a &#123;</div><div class="line">  padding: 5px 10px;</div><div class="line">  text-decoration: none;</div><div class="line">  margin-top: 10px;</div><div class="line">  display: inline-block;</div><div class="line">  background-color: #eee;</div><div class="line">  border-radius: 4px;</div><div class="line">&#125;</div><div class="line">nav a:visited, a:link &#123;</div><div class="line">  color: #607D8B;</div><div class="line">&#125;</div><div class="line">nav a:hover &#123;</div><div class="line">  color: #039be5;</div><div class="line">  background-color: #CFD8DC;</div><div class="line">&#125;</div><div class="line">nav a.active &#123;</div><div class="line">  color: #039be5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>routerLinkActive指令<br>  Angular路由器提供了routerLinkActive指令，我们可以用它来为匹配了活动路由的 HTML 导航元素自动添加一个 CSS 类。 我们唯一要做的就是为它定义样式。真好！<br>  src/app/app.component.ts (active router links)<br>      <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  template: `</div><div class="line">  &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</div><div class="line">  &lt;nav&gt;</div><div class="line">    &lt;a routerLink=&quot;/dashboard&quot; routerLinkActive=&quot;active&quot;&gt;Dashboard&lt;/a&gt;</div><div class="line">    &lt;a routerLink=&quot;/heroes&quot; routerLinkActive=&quot;active&quot;&gt;Heroes&lt;/a&gt;</div><div class="line">  &lt;/nav&gt;</div><div class="line">  &lt;router-outlet&gt;&lt;/router-outlet&gt;</div><div class="line">`,</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>首先把moduleId: module.id添加到AppComponent组件的@Component元数据中以启用相对于模块的文件URL。 然后添加styleUrls属性，使其指向这个CSS文件，代码如下：</p>
+<pre><code>styleUrls: [&apos;./app.component.css&apos;],
+</code></pre><p>应用的全局样式</p>
+<p>当我们把样式添加到组件中时，我们假定组件所需的一切 — HTML、CSS、程序代码 — 都在紧邻的地方。 这样，无论是把它们打包在一起还是在别的组件中复用它都会很容易。</p>
+<p>我们也可以在所有组件之外创建应用级样式。</p>
+<p>我们的设计师提供了一组基础样式，这些样式应用到的元素横跨整个应用。 它们与我们之前在开发环境时安装的整套样式对应。 下面是摘录：</p>
+<p>src/styles.css (excerpt)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">/* Master Styles */</div><div class="line">h1 &#123;</div><div class="line">  color: #369;</div><div class="line">  font-family: Arial, Helvetica, sans-serif;</div><div class="line">  font-size: 250%;</div><div class="line">&#125;</div><div class="line">h2, h3 &#123;</div><div class="line">  color: #444;</div><div class="line">  font-family: Arial, Helvetica, sans-serif;</div><div class="line">  font-weight: lighter;</div><div class="line">&#125;</div><div class="line">body &#123;</div><div class="line">  margin: 2em;</div><div class="line">&#125;</div><div class="line">body, input[text], button &#123;</div><div class="line">  color: #888;</div><div class="line">  font-family: Cambria, Georgia;</div><div class="line">&#125;</div><div class="line">/* . . . */</div><div class="line">/* everywhere else */</div><div class="line">* &#123;</div><div class="line">  font-family: Arial, Helvetica, sans-serif;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果在根目录下没有一个名叫styles.css的文件，就添加它。 确保它包含这里给出的主样式。 并编辑index.html来引用这个样式表。</p>
+<p>src/index.html (link ref)</p>
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;&gt;
+</code></pre><blockquote>
+<p>上一篇：<a href="http://localhost:4000/2017/05/18/AngularJS4" target="_blank" rel="external">AngularJS之英雄联盟服务</a>.<br>  下一篇：<a href="http://localhost:4000/2017/05/18/AngularJS6" target="_blank" rel="external">AngularJS之英雄联盟HTTP</a>.</p>
+</blockquote>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/05/18/AngularJS6/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/05/18/AngularJS4/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="small fish's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        1195802401@qq.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto: 1195802501@qq.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">7</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友情链接">
+                
+                友情链接
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">19</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://prettysheep.info/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/prettysheepsheep/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;小鱼的博客
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
